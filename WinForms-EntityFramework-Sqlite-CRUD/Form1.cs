@@ -21,13 +21,16 @@ namespace WinForms_EntityFramework_Sqlite_CRUD
             using (var context = new PersonnelContext()) {
 
                 var myPersonnel1 = context.Personnels;
-                    if (context.Personnels.FirstOrDefault(a => a.AleId == selectedAleId) != null)
-                    {
-                        MessageBox.Show("deleting record with id: " + context.Personnels.FirstOrDefault(a => a.AleId == selectedAleId).id);
-                        myPersonnel1.Remove(context.Personnels.FirstOrDefault(a => a.AleId == selectedAleId));
+                    //if (context.Personnels.FirstOrDefault(a => a.AleId == selectedAleId) != null)
+                    //{
+                        var dgv1Row = dataGridView1.Rows[selectedRow];
+                        MessageBox.Show("deleting record with id: " + context.Personnels.FirstOrDefault(a => a.id.ToString() == dgv1Row.Cells[0].Value.ToString()).id);
+                        //MessageBox.Show("deleting record with id: " + context.Personnels.FirstOrDefault(a => a.AleId == selectedAleId).id);
+                        myPersonnel1.Remove(context.Personnels.FirstOrDefault(a => a.id.ToString() == dgv1Row.Cells[0].Value.ToString()));
                         context.SaveChanges();
                         dataGridView1.DataSource = null;
-                    }
+                        dataGridView1.DataSource = myPersonnel1.ToList();
+                    //}
 
 
                 //dataGridView1.DataSource = myPersonnel1;
@@ -35,9 +38,10 @@ namespace WinForms_EntityFramework_Sqlite_CRUD
                 //context.Remove(context.Personnels.FirstOrDefault(a => a.AleId == selectedAleId));
 
 
-                else {
-                        MessageBox.Show("got null");
-                    }
+                //else {
+                //        MessageBox.Show("got null");
+                //    }
+
             /*    selectedRow = dataGridView1.CurrentCell.RowIndex;
                 _source.DataSource = context.Personnels;
                 dataGridView1.DataSource = _source;
