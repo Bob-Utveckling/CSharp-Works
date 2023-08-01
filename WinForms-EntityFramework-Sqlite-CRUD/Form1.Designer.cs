@@ -43,13 +43,7 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             textBox0id = new TextBox();
-            dataGridView1 = new DataGridView();
-            firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            aleIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            phoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            lastUpdatedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            personnelBindingSource3 = new BindingSource(components);
             personnelBindingSource2 = new BindingSource(components);
             textBox5Phone = new TextBox();
             button_insert = new Button();
@@ -60,11 +54,26 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
+            personnelBindingSource4 = new BindingSource(components);
+            personnelBindingSource5 = new BindingSource(components);
+            personnelBindingSource6 = new BindingSource(components);
+            dataGridView1 = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            aleIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            phoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            lastUpdatedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).BeginInit();
             statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // button1_loadPersonnelList
@@ -171,68 +180,9 @@
             textBox0id.Size = new Size(274, 27);
             textBox0id.TabIndex = 11;
             // 
-            // dataGridView1
+            // personnelBindingSource3
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, aleIdDataGridViewTextBoxColumn, phoneDataGridViewTextBoxColumn, lastUpdatedDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = personnelBindingSource2;
-            dataGridView1.Location = new Point(307, 94);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(935, 371);
-            dataGridView1.TabIndex = 12;
-            dataGridView1.CellClick += dataGridView1_CellContentClick;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            firstNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
-            lastNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            lastNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            emailDataGridViewTextBoxColumn.MinimumWidth = 6;
-            emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            emailDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // aleIdDataGridViewTextBoxColumn
-            // 
-            aleIdDataGridViewTextBoxColumn.DataPropertyName = "AleId";
-            aleIdDataGridViewTextBoxColumn.HeaderText = "AleId";
-            aleIdDataGridViewTextBoxColumn.MinimumWidth = 6;
-            aleIdDataGridViewTextBoxColumn.Name = "aleIdDataGridViewTextBoxColumn";
-            aleIdDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
-            phoneDataGridViewTextBoxColumn.MinimumWidth = 6;
-            phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            phoneDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // lastUpdatedDataGridViewTextBoxColumn
-            // 
-            lastUpdatedDataGridViewTextBoxColumn.DataPropertyName = "LastUpdated";
-            lastUpdatedDataGridViewTextBoxColumn.HeaderText = "LastUpdated";
-            lastUpdatedDataGridViewTextBoxColumn.MinimumWidth = 6;
-            lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
-            lastUpdatedDataGridViewTextBoxColumn.Width = 125;
+            personnelBindingSource3.DataSource = typeof(Model.Personnel);
             // 
             // personnelBindingSource2
             // 
@@ -318,11 +268,95 @@
             label7.TabIndex = 21;
             label7.Text = "Id";
             // 
+            // personnelBindingSource4
+            // 
+            personnelBindingSource4.DataSource = typeof(Model.Personnel);
+            // 
+            // personnelBindingSource5
+            // 
+            personnelBindingSource5.DataSource = typeof(Model.Personnel);
+            // 
+            // personnelBindingSource6
+            // 
+            personnelBindingSource6.DataSource = typeof(Model.Personnel);
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, aleIdDataGridViewTextBoxColumn, phoneDataGridViewTextBoxColumn, lastUpdatedDataGridViewTextBoxColumn });
+            dataGridView1.DataSource = personnelBindingSource6;
+            dataGridView1.Location = new Point(305, 92);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(938, 375);
+            dataGridView1.TabIndex = 22;
+            dataGridView1.CellClick += dataGridView1_CellContentClick;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
+            firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            firstNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
+            lastNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            lastNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            emailDataGridViewTextBoxColumn.MinimumWidth = 6;
+            emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            emailDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // aleIdDataGridViewTextBoxColumn
+            // 
+            aleIdDataGridViewTextBoxColumn.DataPropertyName = "AleId";
+            aleIdDataGridViewTextBoxColumn.HeaderText = "AleId";
+            aleIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            aleIdDataGridViewTextBoxColumn.Name = "aleIdDataGridViewTextBoxColumn";
+            aleIdDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // phoneDataGridViewTextBoxColumn
+            // 
+            phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
+            phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
+            phoneDataGridViewTextBoxColumn.MinimumWidth = 6;
+            phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
+            phoneDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // lastUpdatedDataGridViewTextBoxColumn
+            // 
+            lastUpdatedDataGridViewTextBoxColumn.DataPropertyName = "LastUpdated";
+            lastUpdatedDataGridViewTextBoxColumn.HeaderText = "LastUpdated";
+            lastUpdatedDataGridViewTextBoxColumn.MinimumWidth = 6;
+            lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
+            lastUpdatedDataGridViewTextBoxColumn.Width = 125;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1263, 515);
+            Controls.Add(dataGridView1);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -332,7 +366,6 @@
             Controls.Add(label1);
             Controls.Add(button_insert);
             Controls.Add(textBox5Phone);
-            Controls.Add(dataGridView1);
             Controls.Add(textBox0id);
             Controls.Add(statusStrip1);
             Controls.Add(toolStrip1);
@@ -350,8 +383,12 @@
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource3).EndInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -372,14 +409,7 @@
         private ToolStripStatusLabel toolStripStatusLabel1;
         private TextBox textBox0id;
         private BindingSource personnelBindingSource1;
-        private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn aleIdDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lastUpdatedDataGridViewTextBoxColumn;
         private TextBox textBox5Phone;
         private BindingSource personnelBindingSource2;
         private Button button_insert;
@@ -390,5 +420,16 @@
         private Label label5;
         private Label label6;
         private Label label7;
+        private BindingSource personnelBindingSource3;
+        private BindingSource personnelBindingSource5;
+        private BindingSource personnelBindingSource4;
+        private BindingSource personnelBindingSource6;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn aleIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lastUpdatedDataGridViewTextBoxColumn;
     }
 }

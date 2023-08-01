@@ -13,7 +13,7 @@ namespace WinForms_EntityFramework_Sqlite_CRUD
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source=C:\Users\bamsh\Desktop\ASP.Net\C#\ÖvergripandeBemanningBro-v3.0.0\Database\database.db");
+            optionsBuilder.UseSqlite(@"Data Source=C:\Users\bamsh\Desktop\ASP.Net\C#\WinForms-EntityFramework-Sqlite-CRUD\database1.db");
         }
         public DbSet<Personnel> Personnels { get; set; }
         //to be considered as alternative: public BindingList<Personnel>? Personnels { get; set; }

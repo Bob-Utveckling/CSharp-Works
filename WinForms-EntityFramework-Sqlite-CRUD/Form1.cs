@@ -23,12 +23,14 @@ namespace WinForms_EntityFramework_Sqlite_CRUD
             {
                 var myPersonnel1 = context.Personnels;
                 var dgv1Row = dataGridView1.Rows[selectedRow];
-                MessageBox.Show("deleting record with id: " + context.Personnels.FirstOrDefault(a => a.Id.ToString() == dgv1Row.Cells[0].Value.ToString()).Id);
+                MessageBox.Show("Deleting record with id: " + context.Personnels.FirstOrDefault(a => a.id.ToString() == dgv1Row.Cells[0].Value.ToString()).id);
                 //MessageBox.Show("deleting record with id: " + context.Personnels.FirstOrDefault(a => a.AleId == selectedAleId).id);
-                myPersonnel1.Remove(context.Personnels.FirstOrDefault(a => a.Id.ToString() == dgv1Row.Cells[0].Value.ToString()));
+                myPersonnel1.Remove(context.Personnels.FirstOrDefault(a => a.id.ToString() == dgv1Row.Cells[0].Value.ToString()));
                 context.SaveChanges();
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = myPersonnel1.ToList(); //if using myPersonnel1 only, gives err: cannot bind directly.
+                
+
             }
         }
 
@@ -78,7 +80,7 @@ namespace WinForms_EntityFramework_Sqlite_CRUD
             newDataRow.Cells[6].Value = textBox6LastUpdated.Text;
             using (var context = new PersonnelContext())
             {
-                var result = context.Personnels.SingleOrDefault(p => p.Id.ToString() == newDataRow.Cells[0].Value.ToString());
+                var result = context.Personnels.SingleOrDefault(p => p.id.ToString() == newDataRow.Cells[0].Value.ToString());
                 if (result != null)
                 {
 
@@ -89,7 +91,7 @@ namespace WinForms_EntityFramework_Sqlite_CRUD
                     result.Phone = newDataRow.Cells[5].Value.ToString() == null ? "" : newDataRow.Cells[5].Value.ToString();
                     //except that if empty it won't work: result.LastUpdated = DateTime.Parse(newDataRow.Cells[6].Value.ToString() == null ? "" : newDataRow.Cells[6].Value.ToString());
                     result.LastUpdated = DateTime.Now;
-                    MessageBox.Show("Updated record with id: " + result.Id);
+                    MessageBox.Show("Updated record with id: " + result.id);
 
                     context.SaveChanges();
                 }
