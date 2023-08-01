@@ -51,8 +51,8 @@
             aleIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             phoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             lastUpdatedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            textBox5Phone = new TextBox();
             personnelBindingSource2 = new BindingSource(components);
+            textBox5Phone = new TextBox();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).BeginInit();
             statusStrip1.SuspendLayout();
@@ -235,16 +235,16 @@
             lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
             lastUpdatedDataGridViewTextBoxColumn.Width = 125;
             // 
+            // personnelBindingSource2
+            // 
+            personnelBindingSource2.DataSource = typeof(Model.Personnel);
+            // 
             // textBox5Phone
             // 
             textBox5Phone.Location = new Point(12, 319);
             textBox5Phone.Name = "textBox5Phone";
             textBox5Phone.Size = new Size(277, 27);
             textBox5Phone.TabIndex = 13;
-            // 
-            // personnelBindingSource2
-            // 
-            personnelBindingSource2.DataSource = typeof(Model.Personnel);
             // 
             // Form1
             // 

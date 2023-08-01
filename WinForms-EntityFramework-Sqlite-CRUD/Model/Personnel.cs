@@ -13,6 +13,7 @@ namespace WinForms_EntityFramework_Sqlite_CRUD.Model
         public string? LastName { get; set; }
         public string? Email { get; set; }
         public string? AleId { get; set; }
+        public string? Phone { get; set; }
         public DateTime? LastUpdated { get; set; }
 
     }
