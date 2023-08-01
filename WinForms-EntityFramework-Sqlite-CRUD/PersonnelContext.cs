@@ -15,8 +15,8 @@ namespace WinForms_EntityFramework_Sqlite_CRUD
         {
             optionsBuilder.UseSqlite(@"Data Source=C:\Users\bamsh\Desktop\ASP.Net\C#\ÖvergripandeBemanningBro-v3.0.0\Database\database.db");
         }
-        //public DbSet<Personnel> Personnels { get; set; }
-        public BindingList<Personnel>? Personnels { get; set; }
+        public DbSet<Personnel> Personnels { get; set; }
+        //to be considered as alternative: public BindingList<Personnel>? Personnels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
