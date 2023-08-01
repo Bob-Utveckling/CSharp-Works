@@ -44,7 +44,6 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             textBox0id = new TextBox();
             dataGridView1 = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -53,6 +52,14 @@
             lastUpdatedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             personnelBindingSource2 = new BindingSource(components);
             textBox5Phone = new TextBox();
+            button_insert = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).BeginInit();
             statusStrip1.SuspendLayout();
@@ -62,7 +69,7 @@
             // 
             // button1_loadPersonnelList
             // 
-            button1_loadPersonnelList.Location = new Point(396, 28);
+            button1_loadPersonnelList.Location = new Point(317, 28);
             button1_loadPersonnelList.Name = "button1_loadPersonnelList";
             button1_loadPersonnelList.Size = new Size(246, 45);
             button1_loadPersonnelList.TabIndex = 0;
@@ -72,17 +79,17 @@
             // 
             // button2_update
             // 
-            button2_update.Location = new Point(678, 28);
+            button2_update.Location = new Point(828, 28);
             button2_update.Name = "button2_update";
             button2_update.Size = new Size(202, 45);
             button2_update.TabIndex = 1;
             button2_update.Text = "Update";
             button2_update.UseVisualStyleBackColor = true;
-            button2_update.Click += button2_Click_upload;
+            button2_update.Click += button2_Click_update;
             // 
             // button3_delete
             // 
-            button3_delete.Location = new Point(912, 28);
+            button3_delete.Location = new Point(1046, 28);
             button3_delete.Name = "button3_delete";
             button3_delete.Size = new Size(196, 45);
             button3_delete.TabIndex = 2;
@@ -100,37 +107,37 @@
             // 
             // textBox1FN
             // 
-            textBox1FN.Location = new Point(12, 142);
+            textBox1FN.Location = new Point(12, 151);
             textBox1FN.Name = "textBox1FN";
-            textBox1FN.Size = new Size(276, 27);
+            textBox1FN.Size = new Size(274, 27);
             textBox1FN.TabIndex = 4;
             // 
             // textBox2LN
             // 
-            textBox2LN.Location = new Point(12, 184);
+            textBox2LN.Location = new Point(12, 209);
             textBox2LN.Name = "textBox2LN";
-            textBox2LN.Size = new Size(276, 27);
+            textBox2LN.Size = new Size(274, 27);
             textBox2LN.TabIndex = 5;
             // 
             // textBox3Email
             // 
-            textBox3Email.Location = new Point(12, 232);
+            textBox3Email.Location = new Point(12, 268);
             textBox3Email.Name = "textBox3Email";
-            textBox3Email.Size = new Size(276, 27);
+            textBox3Email.Size = new Size(274, 27);
             textBox3Email.TabIndex = 6;
             // 
             // textBox4AleId
             // 
-            textBox4AleId.Location = new Point(12, 275);
+            textBox4AleId.Location = new Point(12, 326);
             textBox4AleId.Name = "textBox4AleId";
-            textBox4AleId.Size = new Size(276, 27);
+            textBox4AleId.Size = new Size(274, 27);
             textBox4AleId.TabIndex = 7;
             // 
             // textBox6LastUpdated
             // 
-            textBox6LastUpdated.Location = new Point(13, 362);
+            textBox6LastUpdated.Location = new Point(12, 438);
             textBox6LastUpdated.Name = "textBox6LastUpdated";
-            textBox6LastUpdated.Size = new Size(276, 27);
+            textBox6LastUpdated.Size = new Size(274, 27);
             textBox6LastUpdated.TabIndex = 8;
             // 
             // toolStrip1
@@ -168,7 +175,7 @@
             // 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, aleIdDataGridViewTextBoxColumn, phoneDataGridViewTextBoxColumn, lastUpdatedDataGridViewTextBoxColumn });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, aleIdDataGridViewTextBoxColumn, phoneDataGridViewTextBoxColumn, lastUpdatedDataGridViewTextBoxColumn });
             dataGridView1.DataSource = personnelBindingSource2;
             dataGridView1.Location = new Point(307, 94);
             dataGridView1.Name = "dataGridView1";
@@ -178,14 +185,6 @@
             dataGridView1.TabIndex = 12;
             dataGridView1.CellClick += dataGridView1_CellContentClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            idDataGridViewTextBoxColumn.HeaderText = "id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.Width = 125;
             // 
             // firstNameDataGridViewTextBoxColumn
             // 
@@ -241,16 +240,97 @@
             // 
             // textBox5Phone
             // 
-            textBox5Phone.Location = new Point(12, 319);
+            textBox5Phone.Location = new Point(12, 379);
             textBox5Phone.Name = "textBox5Phone";
-            textBox5Phone.Size = new Size(277, 27);
+            textBox5Phone.Size = new Size(274, 27);
             textBox5Phone.TabIndex = 13;
+            // 
+            // button_insert
+            // 
+            button_insert.Location = new Point(598, 28);
+            button_insert.Name = "button_insert";
+            button_insert.Size = new Size(202, 45);
+            button_insert.TabIndex = 14;
+            button_insert.Text = "Insert New Record";
+            button_insert.UseVisualStyleBackColor = true;
+            button_insert.Click += button1_Click_insert;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(14, 128);
+            label1.Name = "label1";
+            label1.Size = new Size(80, 20);
+            label1.TabIndex = 15;
+            label1.Text = "First Name";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 186);
+            label2.Name = "label2";
+            label2.Size = new Size(79, 20);
+            label2.TabIndex = 16;
+            label2.Text = "Last Name";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(12, 245);
+            label3.Name = "label3";
+            label3.Size = new Size(46, 20);
+            label3.TabIndex = 17;
+            label3.Text = "Email";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(14, 303);
+            label4.Name = "label4";
+            label4.Size = new Size(50, 20);
+            label4.TabIndex = 18;
+            label4.Text = "Ale ID";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(14, 356);
+            label5.Name = "label5";
+            label5.Size = new Size(50, 20);
+            label5.TabIndex = 19;
+            label5.Text = "Phone";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(12, 415);
+            label6.Name = "label6";
+            label6.Size = new Size(97, 20);
+            label6.TabIndex = 20;
+            label6.Text = "Last Updated";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(14, 62);
+            label7.Name = "label7";
+            label7.Size = new Size(22, 20);
+            label7.TabIndex = 21;
+            label7.Text = "Id";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1263, 515);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(button_insert);
             Controls.Add(textBox5Phone);
             Controls.Add(dataGridView1);
             Controls.Add(textBox0id);
@@ -302,5 +382,13 @@
         private DataGridViewTextBoxColumn lastUpdatedDataGridViewTextBoxColumn;
         private TextBox textBox5Phone;
         private BindingSource personnelBindingSource2;
+        private Button button_insert;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
     }
 }
