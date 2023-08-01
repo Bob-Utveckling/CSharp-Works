@@ -14,6 +14,7 @@ namespace WinForms_EntityFramework_Sqlite_CRUD.Model
             
         }
 
+        //if enabling, the Id field will not be visible in the grid data view, apparently. My interactions need knowing id.
         //[Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
