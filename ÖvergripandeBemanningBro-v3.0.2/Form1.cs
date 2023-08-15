@@ -20,7 +20,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         string language = "sv";
         List<SchedItem> okSchedItems = new List<SchedItem>();
         List<SchedItem> notOkSchedItems = new List<SchedItem>();
-        
+        List<Note> notes = new List<Note>();
 
         public void updateLabel(string text)
         {
@@ -38,6 +38,9 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             //set the path to Downloads for the request after:
             string path = Path.GetDirectoryName(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
             path = Path.Combine(path, "Downloads");
+            toolStripStatusLabel1.Text = "Väntar...";
+            toolStripProgressBar1.Visible = true;
+
 
             var dlg = new OpenFileDialog()
             {
@@ -91,9 +94,15 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 notOkSchedItems = tuple.Item5;
                 dataGridView3.DataSource = okSchedItems;
                 dataGridView4.DataSource = notOkSchedItems;
-                toolStripStatusLabel1.Text = $"Det finns {okSchedItems.Count} stycken arbetspass som kan tillsättas i din ny fil.";
+
+                notes = tuple.Item6;
+
+                toolStripStatusLabel1.Text = $"Det finns {okSchedItems.Count} stycken arbetspass som kan tillsättas i din ny fil, " + notes.Count + " anteckningar.";
+                label4OkPersonal.Text = okPersonnelInFile.Count + " Personal som kommer finnas i färdiga filen:";
+                label5NotOkPersonal.Text = notOkPersonnelInFile.Count + " Personal som inte hittades i databasen.";
                 label6OkSchema.Text = okSchedItems.Count + " Schema som ska tillsättas i  den nya exporterade filen:";
                 label7NotOkSchema.Text = notOkSchedItems.Count + " Schema som inte kommer tillsättas i  den nya exporterade filen:";
+                label4FileNameArbetarMed.Text = "Arbetar med filen: " + fileThatWasFed;
             }
 
         }
@@ -120,7 +129,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             //schedItems and okPersonnelInFile is preset
             if (okSchedItems.Count > 0)
             {
-                var result = excel_CreateTheExcelFile.generate(okSchedItems, okPersonnelInFile, fileLocation, fileName, language);
+                var result = excel_CreateTheExcelFile.generate(okSchedItems, okPersonnelInFile, notes, fileLocation, fileName, language);
                 string smallDetails = "Arbetade med schemat som fanns i filjen: " + fileThatWasFed +
                     "\nSpråk: " + language +
                     "\nAntal ok schema = " + okSchedItems.Count +
@@ -182,6 +191,22 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         {
             AboutBox1 a = new AboutBox1();
             a.Show();
+        }
+
+        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        private void folderLocationTextBox_onClick(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.ShowNewFolderButton = true;
+            DialogResult result = folderDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                folderLocationTextBox.Text = folderDialog.SelectedPath;
+            }
         }
     }
 }

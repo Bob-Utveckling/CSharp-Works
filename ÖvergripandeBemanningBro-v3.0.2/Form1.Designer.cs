@@ -36,6 +36,7 @@
             pictureBox2 = new PictureBox();
             button3 = new Button();
             tabPage2 = new TabPage();
+            label4FileNameArbetarMed = new Label();
             label7NotOkSchema = new Label();
             panel1 = new Panel();
             calendarLabelBox = new Label();
@@ -52,8 +53,8 @@
             memberNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             firstNameDataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             lastNameDataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             emailIdDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            groupNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dateFromDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             timeFromDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dateToDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
@@ -69,8 +70,8 @@
             memberNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             firstNameDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             lastNameDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            activity = new DataGridViewTextBoxColumn();
             emailIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            groupNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dateFromDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             timeFromDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dateToDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -80,10 +81,10 @@
             offDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             noteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             sharedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            schedItemBindingSource = new BindingSource(components);
-            label5 = new Label();
+            schedItemBindingSource3 = new BindingSource(components);
+            label5NotOkPersonal = new Label();
             button1 = new Button();
-            label4 = new Label();
+            label4OkPersonal = new Label();
             dataGridView2 = new DataGridView();
             firstNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             lastNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
@@ -98,12 +99,15 @@
             createdFileDateTimeDetailTextbox = new Label();
             resultSmallDetailsTextbox = new Label();
             resultMessageTextbox = new Label();
+            schedItemBindingSource = new BindingSource(components);
             pictureBox1 = new PictureBox();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripProgressBar1 = new ToolStripProgressBar();
             label1 = new Label();
             button2 = new Button();
+            folderBrowserDialog1 = new FolderBrowserDialog();
+            schedItemBindingSource2 = new BindingSource(components);
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -114,14 +118,16 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)schedItemBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)schedItemBindingSource3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).BeginInit();
             tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)schedItemBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)schedItemBindingSource2).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -183,6 +189,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label4FileNameArbetarMed);
             tabPage2.Controls.Add(label7NotOkSchema);
             tabPage2.Controls.Add(panel1);
             tabPage2.Controls.Add(pictureBox4);
@@ -190,9 +197,9 @@
             tabPage2.Controls.Add(dataGridView4);
             tabPage2.Controls.Add(label6OkSchema);
             tabPage2.Controls.Add(dataGridView3);
-            tabPage2.Controls.Add(label5);
+            tabPage2.Controls.Add(label5NotOkPersonal);
             tabPage2.Controls.Add(button1);
-            tabPage2.Controls.Add(label4);
+            tabPage2.Controls.Add(label4OkPersonal);
             tabPage2.Controls.Add(dataGridView2);
             tabPage2.Controls.Add(dataGridView1);
             tabPage2.Location = new Point(4, 29);
@@ -203,6 +210,15 @@
             tabPage2.Text = "Granska resultaten";
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
+            // 
+            // label4FileNameArbetarMed
+            // 
+            label4FileNameArbetarMed.BorderStyle = BorderStyle.Fixed3D;
+            label4FileNameArbetarMed.Location = new Point(128, 112);
+            label4FileNameArbetarMed.Name = "label4FileNameArbetarMed";
+            label4FileNameArbetarMed.Size = new Size(767, 25);
+            label4FileNameArbetarMed.TabIndex = 25;
+            label4FileNameArbetarMed.Text = "Arbetar med filen: (välj fil)";
             // 
             // label7NotOkSchema
             // 
@@ -267,11 +283,12 @@
             // 
             // folderLocationTextBox
             // 
-            folderLocationTextBox.Location = new Point(63, 447);
+            folderLocationTextBox.Location = new Point(15, 447);
             folderLocationTextBox.Name = "folderLocationTextBox";
-            folderLocationTextBox.Size = new Size(162, 27);
+            folderLocationTextBox.Size = new Size(262, 27);
             folderLocationTextBox.TabIndex = 11;
-            folderLocationTextBox.Text = "C:/Temp/";
+            folderLocationTextBox.Text = "C:\\Temp";
+            folderLocationTextBox.Click += folderLocationTextBox_onClick;
             // 
             // label2
             // 
@@ -284,9 +301,9 @@
             // 
             // button4
             // 
-            button4.Location = new Point(17, 539);
+            button4.Location = new Point(15, 539);
             button4.Name = "button4";
-            button4.Size = new Size(252, 119);
+            button4.Size = new Size(262, 119);
             button4.TabIndex = 10;
             button4.Text = "All information stämmer";
             button4.UseVisualStyleBackColor = true;
@@ -325,7 +342,7 @@
             // 
             dataGridView4.AutoGenerateColumns = false;
             dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView4.Columns.AddRange(new DataGridViewColumn[] { memberNameDataGridViewTextBoxColumn1, firstNameDataGridViewTextBoxColumn3, lastNameDataGridViewTextBoxColumn3, emailIdDataGridViewTextBoxColumn1, groupNameDataGridViewTextBoxColumn1, dateFromDataGridViewTextBoxColumn1, timeFromDataGridViewTextBoxColumn1, dateToDataGridViewTextBoxColumn1, timeToDataGridViewTextBoxColumn1, themeColorDataGridViewTextBoxColumn1, etikettDataGridViewTextBoxColumn1, offDataGridViewTextBoxColumn1, noteDataGridViewTextBoxColumn1, sharedDataGridViewTextBoxColumn1 });
+            dataGridView4.Columns.AddRange(new DataGridViewColumn[] { memberNameDataGridViewTextBoxColumn1, firstNameDataGridViewTextBoxColumn3, lastNameDataGridViewTextBoxColumn3, dataGridViewTextBoxColumn1, emailIdDataGridViewTextBoxColumn1, dateFromDataGridViewTextBoxColumn1, timeFromDataGridViewTextBoxColumn1, dateToDataGridViewTextBoxColumn1, timeToDataGridViewTextBoxColumn1, themeColorDataGridViewTextBoxColumn1, etikettDataGridViewTextBoxColumn1, offDataGridViewTextBoxColumn1, noteDataGridViewTextBoxColumn1, sharedDataGridViewTextBoxColumn1 });
             dataGridView4.DataSource = schedItemBindingSource1;
             dataGridView4.Location = new Point(22, 503);
             dataGridView4.Name = "dataGridView4";
@@ -358,21 +375,21 @@
             lastNameDataGridViewTextBoxColumn3.Name = "lastNameDataGridViewTextBoxColumn3";
             lastNameDataGridViewTextBoxColumn3.Width = 125;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "activity";
+            dataGridViewTextBoxColumn1.HeaderText = "activity";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
             // emailIdDataGridViewTextBoxColumn1
             // 
             emailIdDataGridViewTextBoxColumn1.DataPropertyName = "emailId";
-            emailIdDataGridViewTextBoxColumn1.HeaderText = "Email ID";
+            emailIdDataGridViewTextBoxColumn1.HeaderText = "Ale ID";
             emailIdDataGridViewTextBoxColumn1.MinimumWidth = 6;
             emailIdDataGridViewTextBoxColumn1.Name = "emailIdDataGridViewTextBoxColumn1";
             emailIdDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // groupNameDataGridViewTextBoxColumn1
-            // 
-            groupNameDataGridViewTextBoxColumn1.DataPropertyName = "groupName";
-            groupNameDataGridViewTextBoxColumn1.HeaderText = "Group Name";
-            groupNameDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            groupNameDataGridViewTextBoxColumn1.Name = "groupNameDataGridViewTextBoxColumn1";
-            groupNameDataGridViewTextBoxColumn1.Width = 125;
             // 
             // dateFromDataGridViewTextBoxColumn1
             // 
@@ -463,8 +480,8 @@
             // 
             dataGridView3.AutoGenerateColumns = false;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Columns.AddRange(new DataGridViewColumn[] { memberNameDataGridViewTextBoxColumn, firstNameDataGridViewTextBoxColumn2, lastNameDataGridViewTextBoxColumn2, emailIdDataGridViewTextBoxColumn, groupNameDataGridViewTextBoxColumn, dateFromDataGridViewTextBoxColumn, timeFromDataGridViewTextBoxColumn, dateToDataGridViewTextBoxColumn, timeToDataGridViewTextBoxColumn, themeColorDataGridViewTextBoxColumn, etikettDataGridViewTextBoxColumn, offDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn, sharedDataGridViewTextBoxColumn });
-            dataGridView3.DataSource = schedItemBindingSource;
+            dataGridView3.Columns.AddRange(new DataGridViewColumn[] { memberNameDataGridViewTextBoxColumn, firstNameDataGridViewTextBoxColumn2, lastNameDataGridViewTextBoxColumn2, activity, emailIdDataGridViewTextBoxColumn, dateFromDataGridViewTextBoxColumn, timeFromDataGridViewTextBoxColumn, dateToDataGridViewTextBoxColumn, timeToDataGridViewTextBoxColumn, themeColorDataGridViewTextBoxColumn, etikettDataGridViewTextBoxColumn, offDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn, sharedDataGridViewTextBoxColumn });
+            dataGridView3.DataSource = schedItemBindingSource3;
             dataGridView3.Location = new Point(22, 206);
             dataGridView3.Name = "dataGridView3";
             dataGridView3.RowHeadersWidth = 51;
@@ -496,21 +513,21 @@
             lastNameDataGridViewTextBoxColumn2.Name = "lastNameDataGridViewTextBoxColumn2";
             lastNameDataGridViewTextBoxColumn2.Width = 125;
             // 
+            // activity
+            // 
+            activity.DataPropertyName = "activity";
+            activity.HeaderText = "activity";
+            activity.MinimumWidth = 6;
+            activity.Name = "activity";
+            activity.Width = 125;
+            // 
             // emailIdDataGridViewTextBoxColumn
             // 
             emailIdDataGridViewTextBoxColumn.DataPropertyName = "emailId";
-            emailIdDataGridViewTextBoxColumn.HeaderText = "Email ID";
+            emailIdDataGridViewTextBoxColumn.HeaderText = "Ale ID";
             emailIdDataGridViewTextBoxColumn.MinimumWidth = 6;
             emailIdDataGridViewTextBoxColumn.Name = "emailIdDataGridViewTextBoxColumn";
             emailIdDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // groupNameDataGridViewTextBoxColumn
-            // 
-            groupNameDataGridViewTextBoxColumn.DataPropertyName = "groupName";
-            groupNameDataGridViewTextBoxColumn.HeaderText = "Group Name";
-            groupNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            groupNameDataGridViewTextBoxColumn.Name = "groupNameDataGridViewTextBoxColumn";
-            groupNameDataGridViewTextBoxColumn.Width = 125;
             // 
             // dateFromDataGridViewTextBoxColumn
             // 
@@ -584,19 +601,18 @@
             sharedDataGridViewTextBoxColumn.Name = "sharedDataGridViewTextBoxColumn";
             sharedDataGridViewTextBoxColumn.Width = 125;
             // 
-            // schedItemBindingSource
+            // schedItemBindingSource3
             // 
-            schedItemBindingSource.DataSource = typeof(SchedItem);
-            schedItemBindingSource.CurrentChanged += schedItemBindingSource_CurrentChanged;
+            schedItemBindingSource3.DataSource = typeof(SchedItem);
             // 
-            // label5
+            // label5NotOkPersonal
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(555, 480);
-            label5.Name = "label5";
-            label5.Size = new Size(263, 20);
-            label5.TabIndex = 17;
-            label5.Text = "Personal som inte hittades i databasen";
+            label5NotOkPersonal.AutoSize = true;
+            label5NotOkPersonal.Location = new Point(596, 480);
+            label5NotOkPersonal.Name = "label5NotOkPersonal";
+            label5NotOkPersonal.Size = new Size(263, 20);
+            label5NotOkPersonal.TabIndex = 17;
+            label5NotOkPersonal.Text = "Personal som inte hittades i databasen";
             // 
             // button1
             // 
@@ -609,14 +625,14 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_visaPersonalLista;
             // 
-            // label4
+            // label4OkPersonal
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(596, 179);
-            label4.Name = "label4";
-            label4.Size = new Size(299, 20);
-            label4.TabIndex = 16;
-            label4.Text = "Personnel som kommer finnas i färdiga filen";
+            label4OkPersonal.AutoSize = true;
+            label4OkPersonal.Location = new Point(596, 179);
+            label4OkPersonal.Name = "label4OkPersonal";
+            label4OkPersonal.Size = new Size(291, 20);
+            label4OkPersonal.TabIndex = 16;
+            label4OkPersonal.Text = "Personal som kommer finnas i färdiga filen";
             // 
             // dataGridView2
             // 
@@ -741,6 +757,11 @@
             resultMessageTextbox.TabIndex = 0;
             resultMessageTextbox.Text = "Resultat meddelande kommer visas här";
             // 
+            // schedItemBindingSource
+            // 
+            schedItemBindingSource.DataSource = typeof(SchedItem);
+            schedItemBindingSource.CurrentChanged += schedItemBindingSource_CurrentChanged;
+            // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
@@ -791,6 +812,14 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // folderBrowserDialog1
+            // 
+            folderBrowserDialog1.HelpRequest += folderBrowserDialog1_HelpRequest;
+            // 
+            // schedItemBindingSource2
+            // 
+            schedItemBindingSource2.DataSource = typeof(SchedItem);
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -815,16 +844,18 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)schedItemBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)schedItemBindingSource3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)schedItemBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)schedItemBindingSource2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -852,45 +883,19 @@
         private Button button4;
         private PictureBox pictureBox2;
         private BindingSource personnelBindingSource;
-        private Label label5;
-        private Label label4;
+        private Label label5NotOkPersonal;
+        private Label label4OkPersonal;
         private DataGridView dataGridView2;
         private BindingSource personnelBindingSource1;
         private DataGridView dataGridView3;
-        private DataGridViewTextBoxColumn memberNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn emailIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn groupNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateFromDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn timeFromDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateToDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn timeToDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn themeColorDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn etikettDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn offDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn sharedDataGridViewTextBoxColumn;
         private BindingSource schedItemBindingSource;
         private Label label6OkSchema;
         private Label resultMessageTextbox;
         private Label resultSmallDetailsTextbox;
         private Label createdFileDateTimeDetailTextbox;
         private DataGridView dataGridView4;
-        private DataGridViewTextBoxColumn memberNameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn emailIdDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn groupNameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dateFromDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn timeFromDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dateToDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn timeToDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn themeColorDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn etikettDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn offDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn sharedDataGridViewTextBoxColumn1;
         private BindingSource schedItemBindingSource1;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
@@ -905,5 +910,37 @@
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn aleIdDataGridViewTextBoxColumn;
+        private FolderBrowserDialog folderBrowserDialog1;
+        private Label label4FileNameArbetarMed;
+        private BindingSource schedItemBindingSource3;
+        private BindingSource schedItemBindingSource2;
+        private DataGridViewTextBoxColumn memberNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn activity;
+        private DataGridViewTextBoxColumn emailIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dateFromDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn timeFromDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dateToDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn timeToDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn themeColorDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn etikettDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn offDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn sharedDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn memberNameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn emailIdDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dateFromDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn timeFromDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dateToDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn timeToDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn themeColorDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn etikettDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn offDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn sharedDataGridViewTextBoxColumn1;
     }
 }

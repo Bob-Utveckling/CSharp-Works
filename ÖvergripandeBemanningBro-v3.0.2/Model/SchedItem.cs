@@ -19,8 +19,8 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         [DisplayName("Email ID")]
         public string emailId { get; set; }
-        [DisplayName("Group Name")]
-        public string groupName { get; set; }
+        [DisplayName("Activity")]
+        public string activity { get; set; }
         [DisplayName("Date From")]
         public string dateFrom { get; set; }
         [DisplayName("Time From")]
@@ -40,22 +40,75 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         [DisplayName("Shared")]
         public string shared { get; set; }
 
-        public SchedItem (string firstName, string lastName, string possibleAleId, string groupName, string dateDetail, string timeFrom, string timeTo, string off, string note)
+        public SchedItem (string firstName, string lastName, string possibleAleId, string activity, string dateDetail, string timeFrom, string timeTo, string off, string note)
         {
             this.firstName = firstName;
             this.lastName = lastName;
             this.memberName = firstName + " " + lastName;
             this.emailId = possibleAleId; //getEmailIdFor(firstName, lastName);
-            this.groupName = groupName;
+            this.activity = activity;
             this.dateFrom = dateDetail;
             this.timeFrom = timeFrom;
             this.dateTo = dateDetail;
             this.timeTo = timeTo;
-            this.themeColor = getThemeColorFor(groupName);
+            this.themeColor = getThemeColorFor(activity, "sv");
             this.etikett = "";
             this.off = off;
             this.note = note;
             this.shared = "1. Delat";
+        }
+
+        public static bool isThePossibleSchedLineJourBilagaJ(string possibleSchedItemString)
+        {
+            string activity = possibleSchedItemString.Split(';')[5].Trim();
+            if (activity == "Jour bilaga J")  {
+                return true;
+            }
+            return false;
+        }
+
+        public static string prepareANightShiftDetail(string possibleSchedItemString)
+        {
+            string firstName = possibleSchedItemString.Split(';')[0].Trim();
+            string lastName = possibleSchedItemString.Split(';')[1].Trim();
+            string from = possibleSchedItemString.Split(';')[3].Trim();
+            string to = possibleSchedItemString.Split(';')[4].Trim();
+            string activity = possibleSchedItemString.Split(';')[5].Trim();
+            return (firstName + " " + lastName +
+                ": " + from + "-" + to + ", " + activity) ;
+        }
+        public static bool isThePossibleSchedLineANightShift(List<string> listOfNightShiftTypes, string possibleSchedItemString)
+        {
+            string activity = possibleSchedItemString.Split(';')[5].Trim();
+
+            if (listOfNightShiftTypes.Contains(activity))
+            {
+                //this sched line/item is a night shift and should be added as a note, not as a shift since Microsoft Shifts won't accept overnight shifts, i.e. after midnight up to the morning
+                return true;
+            }
+            return false;
+
+        }
+
+        //a filter-like function to checked details we must have before considering the sched item ok to be added to our new outcoming file
+        public static bool isThePossibleSchedLineCleanAndWhatWeWant(List<string> listOfEnheter, string possibleSchedItemString)
+        {
+            string firstName = possibleSchedItemString.Split(';')[0].Trim();
+            string lastName = possibleSchedItemString.Split(';')[1].Trim();
+            string signature = possibleSchedItemString.Split(';')[2].Trim();
+            string from = possibleSchedItemString.Split(';')[3].Trim();
+            string to = possibleSchedItemString.Split(';')[4].Trim();
+            string activity = possibleSchedItemString.Split(';')[5].Trim();
+            string off = possibleSchedItemString.Split(';')[6].Trim();
+            string shiftHours = possibleSchedItemString.Split(';')[7].Trim();
+            string tasks = possibleSchedItemString.Split(';')[8].Trim();
+            string note = possibleSchedItemString.Split(';')[9].Trim();
+            
+            if (listOfEnheter.Contains(activity)) {
+                //this sched line/item can be added to the file
+                return true;
+            }
+            return false;
         }
 
         public static SchedItem createSchedItemFromString(string possibleSchedItemString, string possibleAleId, string dateDetail)
@@ -70,22 +123,27 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             string shiftHours = possibleSchedItemString.Split(';')[7].Trim();
             string tasks = possibleSchedItemString.Split(';')[8].Trim();
             string note = possibleSchedItemString.Split(';')[9].Trim();
+            //switch (activity)
             return new SchedItem(firstName, lastName, possibleAleId, activity, dateDetail, from, to, off, note);
         }
 
-        public static List<Personnel> collectDistincPersonnelFromSchedItemsWithoutContactingDatabase(List<SchedItem> schedItems)
+        public static List<Personnel> collectDistinctPersonnelFromSchedItemsWithoutContactingDatabase(List<SchedItem> schedItems)
         {
             var listOfPersonnelFromSchedItems = new List<Personnel>();
             for (int i = 0; i < schedItems.Count; i++)
             {
-                listOfPersonnelFromSchedItems.Add(
-                    new Personnel(
-                        schedItems[i].firstName,
-                        schedItems[i].lastName,
-                        schedItems[i].emailId
-                        //Personnel.createTempAleIdFromName(schedItems[i].firstName, schedItems[i].lastName)
-                        )
-                );
+                Personnel? found = listOfPersonnelFromSchedItems.Find(x => (x.FirstName == schedItems[i].firstName));
+                if (found == null)
+                {
+                    listOfPersonnelFromSchedItems.Add(
+                        new Personnel(
+                            schedItems[i].firstName,
+                            schedItems[i].lastName,
+                            schedItems[i].emailId
+                            //Personnel.createTempAleIdFromName(schedItems[i].firstName, schedItems[i].lastName)
+                            )
+                    );
+                }
             }
             var allPersonnelSet = listOfPersonnelFromSchedItems.Distinct().ToList();
             return allPersonnelSet;
@@ -175,10 +233,49 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             }
         }
 
-        public string getThemeColorFor(string groupName)
+        public string getThemeColorFor(string groupName, string language)
         {
             //based on group name return the right color (Temfärg)
-            return "6. Gul";
+            switch ((groupName, language))
+            {
+                //Surtehöjd, Klöverstigen,
+                //Björklövsvägen NATT
+                //Jour bilaga J
+                //Klöverstigen NATT
+                case ("Björklövsvägen", "en"):
+                    return "3. Green";
+                //not used:
+                case ("Björklövsvägen NATT", "en"):
+                    return "9. DarkGreen";
+                case ("Surte", "en"):
+                    return "6. Yellow";
+                //not used:
+                case ("Jour bilaga J", "en"):
+                    return "1. White";
+                case ("Klöverstigen", "en"):
+                    return "5. Pink";
+                //not used:
+                case ("Klöverstigen NATT", "en"):
+                    return "11. DarkPink";
+
+                case ("Björklövsvägen", "sv"):
+                    return "3. Grön";
+                //not used:
+                case ("Björklövsvägen NATT", "sv"):
+                    return "9. DarkGreen";
+                case ("Surte", "sv"):
+                    return "6. Gul";
+                //not used:
+                case ("Jour bilaga J", "sv"):
+                    return "1. Vit";
+                case ("Klöverstigen", "sv"):
+                    return "5. Rosa";
+                //not used:
+                case ("Klöverstigen NATT", "sv"):
+                    return "11. DarkPink";
+            }
+            return "8. DarkBlue";
+
         }
         public string getEmailIdFor(string firstName, string lastName)
         {
@@ -188,7 +285,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         }
         public string toString()
         {
-            return "firstName: "+this.firstName+", lastName: " + this.lastName + ", memberName: " + this.memberName + ", email: " + this.emailId + ", groupName: " + this.groupName + ", dateFrom: " + this.dateFrom +
+            return "firstName: "+this.firstName+", lastName: " + this.lastName + ", memberName: " + this.memberName + ", email: " + this.emailId + ", activity: " + this.activity + ", dateFrom: " + this.dateFrom +
             ", timeFrom: " + this.timeFrom + ", dateTo: " + this.dateTo + ", timeTo: " + this.timeTo + ", themeColor: " + this.themeColor +
             ", etikett: " + this.etikett + ", off: " +  this.off + ", note: " + this.note + ", shared: " + this.shared;
         }

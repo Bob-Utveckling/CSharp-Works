@@ -12,13 +12,20 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 {
     public class excel_CreateTheExcelFile
     {
-        public static Tuple<string, string, string> generate(List<SchedItem> schedItems, 
+        public static Tuple<string, string, string> generate(
+                        List<SchedItem> schedItems, 
                         List<Personnel> okPersonnel,
+                        List<Note> notes,
                         string fileLocation,
                         string fileName,
                         string language)
         {
-            string combinepath = fileLocation + fileName;
+
+            //write commands to check schedItems once more now
+            //because if language is "en", its "activity" should be in en. either transfer from sv to en, or leave as en if recognized that it is in en
+            //but if the language is "sv", either change from en to sv, or leave as sv if recognized that it is sv
+
+            string combinepath = fileLocation + "\\" + fileName;
 
             Excel.Application xlApp = new Excel.Application();
             Excel.Workbook xlWorkbook = xlApp.Workbooks.Add();
@@ -28,7 +35,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 MessageBox.Show("Excel is not properly installed!");
             }
             createTheSheet_Arbetspass(schedItems, xlWorkbook, language);
-            createTheSheet_Dagsanteckningar(xlWorkbook, language);
+            createTheSheet_Dagsanteckningar(xlWorkbook, notes, language);
             createTheSheet_Medlemmar(xlWorkbook, okPersonnel, language);
 
             try
@@ -38,7 +45,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 //xlApp.Quit();
                 return (Tuple.Create(
                     "ok",
-                    "Sparade nya schemat till filen: " + combinepath + "\nNu kan du importera det till Microsoft Shifts/Arbetspass!",
+                    "Sparade nya schemat till filen: " + combinepath + "\nNu kan du importera den till Microsoft Shifts/Arbetspass!",
                     combinepath));
             } catch (System.Runtime.InteropServices.COMException e)
             {
@@ -84,7 +91,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             }
         }
 
-        public static void createTheSheet_Dagsanteckningar(Excel.Workbook xlWorkbook, string language)
+        public static void createTheSheet_Dagsanteckningar(Excel.Workbook xlWorkbook, List<Note> notes, string language)
         {
             //wrong - this will create "Sheet2" then save the sheet1 ie arbetspass to Dagsanteckningar!
             //xlWorkbook.Sheets.Add();
@@ -104,8 +111,14 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                     xlWorksheet2.Cells[1, 2] = "Anteckning";
                     break;
             }
+            for (int iRecord = 0; iRecord < notes.Count; iRecord++)
+            {
+                xlWorksheet2.Cells[iRecord + 2, 1] = notes[iRecord].date;
+                xlWorksheet2.Cells[iRecord + 2, 2] = notes[iRecord].note;
+
+            }
         }
-        public static void createTheSheet_Arbetspass(List<SchedItem>schedItems, Excel.Workbook xlWorkbook, string language)
+            public static void createTheSheet_Arbetspass(List<SchedItem>schedItems, Excel.Workbook xlWorkbook, string language)
         {
             Excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
             switch (language)
@@ -150,7 +163,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             {
                 xlWorksheet.Cells[iRecord + 2, 1] = schedItems[iRecord].memberName;
                 xlWorksheet.Cells[iRecord + 2, 2] = schedItems[iRecord].emailId;
-                xlWorksheet.Cells[iRecord + 2, 3] = schedItems[iRecord].groupName;
+                xlWorksheet.Cells[iRecord + 2, 3] = schedItems[iRecord].activity;
                 xlWorksheet.Cells[iRecord + 2, 4] = schedItems[iRecord].dateFrom;
                 xlWorksheet.Cells[iRecord + 2, 5] = schedItems[iRecord].timeFrom;
                 xlWorksheet.Cells[iRecord + 2, 6] = schedItems[iRecord].dateTo;

@@ -31,6 +31,13 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             dataGridView1 = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            aleIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            phoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            lastUpdatedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             personnelBindingSource = new BindingSource(components);
             button1_loadPersonnelList = new Button();
             button_insert = new Button();
@@ -56,13 +63,6 @@
             label8 = new Label();
             label9 = new Label();
             pictureBox1 = new PictureBox();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            aleIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            phoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            lastUpdatedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).BeginInit();
             statusStrip2.SuspendLayout();
@@ -84,6 +84,62 @@
             dataGridView1.CellClick += dataGridView1_CellContentClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            firstNameDataGridViewTextBoxColumn.HeaderText = "Förnamn";
+            firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            firstNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            lastNameDataGridViewTextBoxColumn.HeaderText = "Efternamn";
+            lastNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            lastNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            emailDataGridViewTextBoxColumn.HeaderText = "Mejl";
+            emailDataGridViewTextBoxColumn.MinimumWidth = 6;
+            emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            emailDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // aleIdDataGridViewTextBoxColumn
+            // 
+            aleIdDataGridViewTextBoxColumn.DataPropertyName = "AleId";
+            aleIdDataGridViewTextBoxColumn.HeaderText = "Ale Id (viktig)";
+            aleIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            aleIdDataGridViewTextBoxColumn.Name = "aleIdDataGridViewTextBoxColumn";
+            aleIdDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // phoneDataGridViewTextBoxColumn
+            // 
+            phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
+            phoneDataGridViewTextBoxColumn.HeaderText = "Telefonnummer";
+            phoneDataGridViewTextBoxColumn.MinimumWidth = 6;
+            phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
+            phoneDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // lastUpdatedDataGridViewTextBoxColumn
+            // 
+            lastUpdatedDataGridViewTextBoxColumn.DataPropertyName = "LastUpdated";
+            lastUpdatedDataGridViewTextBoxColumn.HeaderText = "Senast uppdaterad";
+            lastUpdatedDataGridViewTextBoxColumn.MinimumWidth = 6;
+            lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
+            lastUpdatedDataGridViewTextBoxColumn.Width = 125;
+            // 
             // personnelBindingSource
             // 
             personnelBindingSource.DataSource = typeof(Model.Personnel);
@@ -91,7 +147,7 @@
             // 
             // button1_loadPersonnelList
             // 
-            button1_loadPersonnelList.Location = new Point(242, 87);
+            button1_loadPersonnelList.Location = new Point(242, 79);
             button1_loadPersonnelList.Name = "button1_loadPersonnelList";
             button1_loadPersonnelList.Size = new Size(259, 58);
             button1_loadPersonnelList.TabIndex = 1;
@@ -121,7 +177,7 @@
             // 
             // button3_delete
             // 
-            button3_delete.Location = new Point(809, 81);
+            button3_delete.Location = new Point(807, 79);
             button3_delete.Name = "button3_delete";
             button3_delete.Size = new Size(179, 58);
             button3_delete.TabIndex = 4;
@@ -294,62 +350,6 @@
             pictureBox1.Size = new Size(51, 63);
             pictureBox1.TabIndex = 23;
             pictureBox1.TabStop = false;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            firstNameDataGridViewTextBoxColumn.HeaderText = "Förnamn";
-            firstNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            firstNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            lastNameDataGridViewTextBoxColumn.HeaderText = "Efternamn";
-            lastNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            lastNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            emailDataGridViewTextBoxColumn.HeaderText = "Mejl";
-            emailDataGridViewTextBoxColumn.MinimumWidth = 6;
-            emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            emailDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // aleIdDataGridViewTextBoxColumn
-            // 
-            aleIdDataGridViewTextBoxColumn.DataPropertyName = "AleId";
-            aleIdDataGridViewTextBoxColumn.HeaderText = "Ale Id (viktig)";
-            aleIdDataGridViewTextBoxColumn.MinimumWidth = 6;
-            aleIdDataGridViewTextBoxColumn.Name = "aleIdDataGridViewTextBoxColumn";
-            aleIdDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            phoneDataGridViewTextBoxColumn.HeaderText = "Telefonnummer";
-            phoneDataGridViewTextBoxColumn.MinimumWidth = 6;
-            phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            phoneDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // lastUpdatedDataGridViewTextBoxColumn
-            // 
-            lastUpdatedDataGridViewTextBoxColumn.DataPropertyName = "LastUpdated";
-            lastUpdatedDataGridViewTextBoxColumn.HeaderText = "Senast uppdaterad";
-            lastUpdatedDataGridViewTextBoxColumn.MinimumWidth = 6;
-            lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
-            lastUpdatedDataGridViewTextBoxColumn.Width = 125;
             // 
             // Form2
             // 
