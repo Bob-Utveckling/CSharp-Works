@@ -111,6 +111,12 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                     xlWorksheet2.Cells[1, 2] = "Anteckning";
                     break;
             }
+
+            //if notes belong to same day, they should become one note
+            //since Microsoft Shifts takes only one note for each date.
+            //PROVIDE THIS SOLUTION:
+            //notes = SchedItem.returnCondensedNotes(notes);
+
             for (int iRecord = 0; iRecord < notes.Count; iRecord++)
             {
                 xlWorksheet2.Cells[iRecord + 2, 1] = notes[iRecord].date;

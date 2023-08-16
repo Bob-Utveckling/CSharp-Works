@@ -29,7 +29,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             List<string> listOfNightShiftTypes = new List<string>();
             listOfNightShiftTypes.Add("Björklövsvägen NATT");
             listOfNightShiftTypes.Add("Klöverstigen NATT");
-            listOfNightShiftTypes.Add("Jour bilaga J");
+            listOfNightShiftTypes.Add("Jour bilaga J"); //not really used. has its own function
             
             List<Note> notes = new List<Note>();
 
@@ -48,6 +48,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                     //###########   making following 4 lines appear in every ReadLine
                     i++;
                     int percentageComplete = (int)((i / (double)fileLength) * 100);
+                    if (percentageComplete>100) { percentageComplete = 100; } //a hack to avoid error in toolStripProgressBar value being more than 100??
                     toolStripProgressBar.Value = percentageComplete;
                     //MessageBox.Show("i: " + i + ", %: " + percentageComplete.ToString());
 
@@ -96,6 +97,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                 bool okToReadSched = true;
                                 var headerLine = reader.ReadLine();
                                 // Förnamn; Efternamn; Signatur; Från; Till; Aktivitet; Rast; Passtid; Uppgifter; Anteckning
+                                
                                 List<string> schedLines = new List<string>();
                                 var possibleSchedLine = "";
                                 
@@ -109,7 +111,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                     //MessageBox.Show("i: " + i + ", %: " + percentageComplete.ToString());
 
 
-
+                                    var considerPreviousLine = possibleSchedLine; //this is needed for JourBilaga recognition since the line depends on the previous line. See next lines for its use.
                                     possibleSchedLine = reader.ReadLine()!; //You can use the "Null forgiving operator" at the end of Your line. (the exclamation mark), in order to remove the warning. https://stackoverflow.com/questions/59306751/why-does-this-code-give-a-possible-null-reference-return-compiler-warning
                                     if (possibleSchedLine != ";;;;;;;;;") //because it is the end line for this date
                                     {
@@ -127,7 +129,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                         string possibleAleId = Personnel.getMemberAleIdIfInDatabase(possibleFirstNameInSched, possibleLastNameInSched);
                                         if (SchedItem.isThePossibleSchedLineJourBilagaJ(possibleSchedLine))
                                         {
-
+                                            notes.Add(new Note(thisDateDetail, SchedItem.createANighJourBilagaDetail(possibleSchedLine, considerPreviousLine)));
                                             //add as a note and not as a sched line but need the previous line's person since it is him/her who has the Jour Bilaga J
                                         } else
                                         {
@@ -137,7 +139,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                                 {
                                                     if (SchedItem.isThePossibleSchedLineANightShift(listOfNightShiftTypes, possibleSchedLine))
                                                     {
-                                                        notes.Add(new Note(thisDateDetail, SchedItem.prepareANightShiftDetail(possibleSchedLine)));
+                                                        notes.Add(new Note(thisDateDetail, SchedItem.createANightShiftDetail(possibleSchedLine)));
                                                     } else
                                                     {
                                                         okSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));

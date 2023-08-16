@@ -58,6 +58,37 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             this.shared = "1. Delat";
         }
 
+        //if notes belong to same day, they should become one note
+        //since Microsoft Shifts takes only one note for each date.
+        public static List<Note> returnCondensedNotes(List<Note> notes)
+        {
+            List<string> listOfAllDates = new List<string>();
+            for (int i=0; i<notes.Count; i++)
+            {
+                MessageBox.Show("note: " + notes[i].note + ", date: " + notes[i].date);
+                listOfAllDates.Add(notes[i].note);
+            }
+            var uniqueDates = new HashSet<string>(listOfAllDates).ToList(); //ToList otherwise  Cannot apply indexing with [] to an expression of type 'System.Collections.Generic.ICollection<string>
+            MessageBox.Show("I have " + uniqueDates.Count + " uniqueDates in notes");
+            List<Note> newCondensedNotes = new List<Note>();
+            //make new list of newCondensedNotes, only its date is set:
+            for (int i=0; i<uniqueDates.Count; i++)
+            {
+                newCondensedNotes.Add(new Note(uniqueDates[i],""));
+            }
+            //update the list of newCondensedNotes s at the places it should be updated
+            for (int i = 0; i < notes.Count; i++)
+            {
+                var curDate = notes[i].date;
+                var curNote = notes[i].note;
+                //doesn't work? var locationToAddInCondensedNotes = newCondensedNotes.IndexOf(n => n.date.Equals(curDate, StringComparison.Ordinal));
+                var locationToAddInCondensedNotes = newCondensedNotes.FindIndex(delegate(Note note) {
+                    return note.date.Equals(curDate, StringComparison.Ordinal); });
+                    newCondensedNotes[locationToAddInCondensedNotes].note += " " + curNote;
+            }
+            return newCondensedNotes;
+        }
+
         public static bool isThePossibleSchedLineJourBilagaJ(string possibleSchedItemString)
         {
             string activity = possibleSchedItemString.Split(';')[5].Trim();
@@ -67,7 +98,21 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             return false;
         }
 
-        public static string prepareANightShiftDetail(string possibleSchedItemString)
+        public static string createANighJourBilagaDetail(string actualLine, string previousLine)
+        {
+            string firstName = previousLine.Split(';')[0].Trim();
+            string lastName = previousLine.Split(';')[1].Trim();
+
+            string from = actualLine.Split(';')[3].Trim();
+            string to = actualLine.Split(';')[4].Trim();
+
+            string activity = actualLine.Split(';')[5].Trim();
+
+            return (firstName + " " + lastName +
+                ": " + from + "-" + to + ", " + activity);
+        }
+
+        public static string createANightShiftDetail(string possibleSchedItemString)
         {
             string firstName = possibleSchedItemString.Split(';')[0].Trim();
             string lastName = possibleSchedItemString.Split(';')[1].Trim();
@@ -247,7 +292,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 //not used:
                 case ("Björklövsvägen NATT", "en"):
                     return "9. DarkGreen";
-                case ("Surte", "en"):
+                case ("Surtehöjd", "en"):
                     return "6. Yellow";
                 //not used:
                 case ("Jour bilaga J", "en"):
@@ -263,7 +308,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 //not used:
                 case ("Björklövsvägen NATT", "sv"):
                     return "9. DarkGreen";
-                case ("Surte", "sv"):
+                case ("Surtehöjd", "sv"):
                     return "6. Gul";
                 //not used:
                 case ("Jour bilaga J", "sv"):
