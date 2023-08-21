@@ -65,11 +65,13 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             List<string> listOfAllDates = new List<string>();
             for (int i=0; i<notes.Count; i++)
             {
-                MessageBox.Show("note: " + notes[i].note + ", date: " + notes[i].date);
-                listOfAllDates.Add(notes[i].note);
+                //MessageBox.Show("note: " + notes[i].note + ", date: " + notes[i].date);
+                listOfAllDates.Add(notes[i].date);
             }
-            var uniqueDates = new HashSet<string>(listOfAllDates).ToList(); //ToList otherwise  Cannot apply indexing with [] to an expression of type 'System.Collections.Generic.ICollection<string>
-            MessageBox.Show("I have " + uniqueDates.Count + " uniqueDates in notes");
+            var uniqueDates = listOfAllDates.Distinct().ToList(); //ToList otherwise  Cannot apply indexing with [] to an expression of type 'System.Collections.Generic.ICollection<string>
+            //MessageBox.Show("I have " + uniqueDates.Count + " uniqueDates in notes");
+            //uniqueDates.ForEach(i => MessageBox.Show(i));
+
             List<Note> newCondensedNotes = new List<Note>();
             //make new list of newCondensedNotes, only its date is set:
             for (int i=0; i<uniqueDates.Count; i++)
@@ -84,7 +86,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 //doesn't work? var locationToAddInCondensedNotes = newCondensedNotes.IndexOf(n => n.date.Equals(curDate, StringComparison.Ordinal));
                 var locationToAddInCondensedNotes = newCondensedNotes.FindIndex(delegate(Note note) {
                     return note.date.Equals(curDate, StringComparison.Ordinal); });
-                    newCondensedNotes[locationToAddInCondensedNotes].note += " " + curNote;
+                    newCondensedNotes[locationToAddInCondensedNotes].note += "\n" + curNote;
             }
             return newCondensedNotes;
         }
@@ -170,6 +172,37 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             string note = possibleSchedItemString.Split(';')[9].Trim();
             //switch (activity)
             return new SchedItem(firstName, lastName, possibleAleId, activity, dateDetail, from, to, off, note);
+        }
+
+        public static List<Personnel> collectDistinctNotOkPersonnelFromSchedItems(List<SchedItem> schedItems)
+        {
+            var listOfPersonnelFromSchedItems = new List<Personnel>();
+            //make a list of "anything written as" personnel from "not ok sched items"
+            for (int i = 0; i < schedItems.Count; i++)
+            {
+                Personnel? found = listOfPersonnelFromSchedItems.Find(x => (x.FirstName == schedItems[i].firstName));
+                if (found == null)
+                {
+                    listOfPersonnelFromSchedItems.Add(
+                        new Personnel(
+                            schedItems[i].firstName,
+                            schedItems[i].lastName,
+                            schedItems[i].emailId
+                            //Personnel.createTempAleIdFromName(schedItems[i].firstName, schedItems[i].lastName)
+                            )
+                    );
+                }
+            }
+            var listOfNotOkPersonnel = new List<Personnel>();
+            for (int i = 0; i < listOfPersonnelFromSchedItems.Count; i++)
+            { 
+                if (listOfPersonnelFromSchedItems[i].AleId == "NA")
+                {
+                    listOfNotOkPersonnel.Add(listOfPersonnelFromSchedItems[i]);
+                }
+                //listOfNotOkPersonnel = listOfPersonnelFromSchedItems.Distinct().ToList();
+            }
+            return listOfNotOkPersonnel;
         }
 
         public static List<Personnel> collectDistinctPersonnelFromSchedItemsWithoutContactingDatabase(List<SchedItem> schedItems)

@@ -12,7 +12,8 @@ namespace ÖvergripandeBemanningBro_v3._0._2
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source=C:\Users\bamsh\Desktop\ASP.Net\C#\WinForms-EntityFramework-Sqlite-CRUD\database1.db");
+            optionsBuilder.UseSqlite(@"Data Source="+ System.Windows.Forms.Application.StartupPath +"database1.db");
+            //optionsBuilder.UseSqlite(@"Data Source="\bamsh\Desktop\ASP.Net\C#\WinForms-EntityFramework-Sqlite-CRUD\database1.db");
         }
         public DbSet<Personnel> Personnels { get; set; }
         //to be considered as alternative: public BindingList<Personnel>? Personnels { get; set; }

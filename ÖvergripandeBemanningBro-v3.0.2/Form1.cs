@@ -35,6 +35,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         private void button3_Click_valjFil(object sender, EventArgs e)
         {
+
             //set the path to Downloads for the request after:
             string path = Path.GetDirectoryName(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
             path = Path.Combine(path, "Downloads");
@@ -96,6 +97,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 dataGridView4.DataSource = notOkSchedItems;
 
                 notes = tuple.Item6;
+                dataGridView5Notes.DataSource = notes;
 
                 toolStripStatusLabel1.Text = $"Det finns {okSchedItems.Count} stycken arbetspass som kan tillsättas i din ny fil, " + notes.Count + " anteckningar.";
                 label4OkPersonal.Text = okPersonnelInFile.Count + " Personal som kommer finnas i färdiga filen:";
@@ -207,6 +209,11 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             {
                 folderLocationTextBox.Text = folderDialog.SelectedPath;
             }
+        }
+
+        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

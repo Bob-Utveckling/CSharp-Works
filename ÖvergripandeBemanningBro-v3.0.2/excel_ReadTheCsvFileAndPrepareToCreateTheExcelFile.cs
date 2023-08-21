@@ -153,6 +153,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                             else
                                             {
                                                 notOkSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
+                                                notOkSchedItems = notOkSchedItems.OrderBy(o => o.activity).ToList();
                                             }
 
                                         }
@@ -190,7 +191,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             
             //notOkListsOfPersonnelInSchedItems.Add(new Personnel("Absent1", "absi", "NA"));
             //SchedItem.collectDistinctPersonnelFromSchedItems(notOkSchedItems);
-            List<Personnel> notOkListsOfPersonnelInSchedItems = SchedItem.collectDistinctPersonnelFromSchedItemsWithoutContactingDatabase(notOkSchedItems);
+            List<Personnel> notOkListsOfPersonnelInSchedItems = SchedItem.collectDistinctNotOkPersonnelFromSchedItems(notOkSchedItems);
 
             return (Tuple.Create(
                         datesInTheFile,

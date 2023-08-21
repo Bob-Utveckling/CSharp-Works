@@ -20,11 +20,19 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             using (var context = new PersonnelContext())
             {
                 var myPersonnels = context.Personnels;
-                dataGridView1.DataSource = myPersonnels.ToList(); //BindingList?
-                toolStripStatusLabel1.Text = "Redo";
-            }
 
-        }
+                dataGridView1.DataSource = myPersonnels.ToList(); //BindingList?
+                //err:value cannot be null. dataGridView1.Sort(this.dataGridView1.Columns["firstName"], ListSortDirection.Ascending);
+                toolStripStatusLabel1.Text = "Redo";
+            };
+    }
+
+
+
+
+
+
+
         int selectedRow;
 
         private void personnelBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -110,19 +118,24 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectedRow = e.RowIndex;
-            DataGridViewRow row = dataGridView1.Rows[selectedRow];
-            //selectedAleId = row.Cells[4].Value == null ? "" : row.Cells[4].Value.ToString();
+            try
+            {
+                selectedRow = e.RowIndex;
+                DataGridViewRow row = dataGridView1.Rows[selectedRow];
+                //selectedAleId = row.Cells[4].Value == null ? "" : row.Cells[4].Value.ToString();
 
-            textBox0id.Text = row.Cells[0].Value == null ? "" : row.Cells[0].Value.ToString();
-            textBox1FN.Text = row.Cells[1].Value == null ? "" : row.Cells[1].Value.ToString();
-            textBox2LN.Text = row.Cells[2].Value == null ? "" : row.Cells[2].Value.ToString();
-            textBox3Email.Text = row.Cells[3].Value == null ? "" : row.Cells[3].Value.ToString();
-            textBox4AleId.Text = row.Cells[4].Value == null ? "" : row.Cells[4].Value.ToString();
-            textBox5Phone.Text = row.Cells[5].Value == null ? "" : row.Cells[5].Value.ToString();
-            textBox6LastUpdated.Text = row.Cells[6].Value == null ? "" : row.Cells[6].Value.ToString();
-            toolStripStatusLabel1.Text = "Uppdatera databaspost med id " + row.Cells[0].Value.ToString();
-
+                textBox0id.Text = row.Cells[0].Value == null ? "" : row.Cells[0].Value.ToString();
+                textBox1FN.Text = row.Cells[1].Value == null ? "" : row.Cells[1].Value.ToString();
+                textBox2LN.Text = row.Cells[2].Value == null ? "" : row.Cells[2].Value.ToString();
+                textBox3Email.Text = row.Cells[3].Value == null ? "" : row.Cells[3].Value.ToString();
+                textBox4AleId.Text = row.Cells[4].Value == null ? "" : row.Cells[4].Value.ToString();
+                textBox5Phone.Text = row.Cells[5].Value == null ? "" : row.Cells[5].Value.ToString();
+                textBox6LastUpdated.Text = row.Cells[6].Value == null ? "" : row.Cells[6].Value.ToString();
+                toolStripStatusLabel1.Text = "Uppdatera databaspost med id " + row.Cells[0].Value.ToString();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button3_delete_Click(object sender, EventArgs e)
