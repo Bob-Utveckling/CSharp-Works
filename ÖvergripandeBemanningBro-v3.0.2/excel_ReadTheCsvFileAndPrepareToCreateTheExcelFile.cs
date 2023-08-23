@@ -69,6 +69,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                         //###########   making following 4 lines appear in every ReadLine
                         i++;
                         percentageComplete = (int)((i / (double)fileLength) * 100);
+                        if (percentageComplete>100) { percentageComplete = 100; } //a hack to avoid error in toolStripProgressBar value being more than 100??
                         toolStripProgressBar.Value = percentageComplete;
                         //MessageBox.Show("i: " + i + ", %: " + percentageComplete.ToString());
 
@@ -78,6 +79,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                         var indexOfQuote = thisDateDetail.IndexOf("\"");
                         int numChars = indexOfQuote - indexOfAfterComma;
                         thisDateDetail = thisDateDetail.Substring(indexOfAfterComma, numChars).Trim();
+                        //ok MessageBox.Show("I have date: " + thisDateDetail);
                         datesInTheFile.Add(DateTime.Parse(thisDateDetail));
                         //start the scanning for the schedule:
                         bool shouldLoopForThisDate = true;
@@ -87,12 +89,13 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                             //###########   making following 4 lines appear in every ReadLine
                             i++;
                             percentageComplete = (int)((i / (double)fileLength) * 100);
+                            if (percentageComplete>100) { percentageComplete = 100; } //a hack to avoid error in toolStripProgressBar value being more than 100??
                             toolStripProgressBar.Value = percentageComplete;
                             //MessageBox.Show("i: " + i + ", %: " + percentageComplete.ToString());
 
 
                             line = reader.ReadLine();
-                            if (line == "Schematid;;;;;;;;;") //this in the file, means a set of schedule items will now start from the next line
+                            if (line == "Schematid;;;;;;;;;" || line == "\"Schematid\"") //this in the file, means a set of schedule items will now start from the next line
                             {
                                 bool okToReadSched = true;
                                 var headerLine = reader.ReadLine();
@@ -107,13 +110,18 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                     //###########   making following 4 lines appear in every ReadLine
                                     i++;
                                     percentageComplete = (int)((i / (double)fileLength) * 100);
+                                    if (percentageComplete>100) { percentageComplete = 100; } //a hack to avoid error in toolStripProgressBar value being more than 100??
                                     toolStripProgressBar.Value = percentageComplete;
                                     //MessageBox.Show("i: " + i + ", %: " + percentageComplete.ToString());
 
 
                                     var considerPreviousLine = possibleSchedLine; //this is needed for JourBilaga recognition since the line depends on the previous line. See next lines for its use.
                                     possibleSchedLine = reader.ReadLine()!; //You can use the "Null forgiving operator" at the end of Your line. (the exclamation mark), in order to remove the warning. https://stackoverflow.com/questions/59306751/why-does-this-code-give-a-possible-null-reference-return-compiler-warning
-                                    if (possibleSchedLine != ";;;;;;;;;") //because it is the end line for this date
+                                    
+                                    //MessageBox.Show("possibleSchedLine: " + possibleSchedLine);
+                                    //err -- doesn't read ""?   if (possibleSchedLine != ";;;;;;;;;" || possibleSchedLine != "\"\"") //because it is the end line for this date
+                                    
+                                    if (possibleSchedLine != "\"\"") //because it is the end line for this date
                                     {
                                         // Bob; Lotfabadi; Surte; 08:00; 16:30; Surtehöjd;30; 08:00; ; 
                                         // Bobby; Sommarvikarie3; Klö; 07:30; 15:00; Klöverstigen; 30; 07:00; ;
@@ -123,9 +131,9 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                         //call the right constructor
                                         //schedItems.Add(new SchedItem(possibleSchedLine));
 
-                                        string possibleFirstNameInSched = possibleSchedLine.Split(';')[0].Trim();
-                                        string possibleLastNameInSched = possibleSchedLine.Split(';')[1].Trim();
-                                        //MessageBox.Show("possible first name: " + possibleFirstNameInSched + ", last name: " + possibleLastNameInSched);
+                                        string possibleFirstNameInSched = possibleSchedLine.Split(';')[0].Replace("\"", "").Trim();
+                                        string possibleLastNameInSched = possibleSchedLine.Split(';')[1].Replace("\"", "").Trim();
+                                        //MessageBox.Show("for AleId, possible first name: " + possibleFirstNameInSched + ", last name: " + possibleLastNameInSched);
                                         string possibleAleId = Personnel.getMemberAleIdIfInDatabase(possibleFirstNameInSched, possibleLastNameInSched);
                                         if (SchedItem.isThePossibleSchedLineJourBilagaJ(possibleSchedLine))
                                         {
@@ -142,16 +150,22 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                                         notes.Add(new Note(thisDateDetail, SchedItem.createANightShiftDetail(possibleSchedLine)));
                                                     } else
                                                     {
+                                                        //MessageBox.Show("adding as ok");
                                                         okSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
                                                     }
                                                 }
                                                 else
                                                 {
+                                                    //can uncheck this to see what we mean by unclean and still adding
+                                                    //MessageBox.Show("adding as NOT ok. not clean and what we want");
+                                                    
                                                     notOkSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
                                                 }
                                             }
                                             else
                                             {
+                                                //MessageBox.Show("adding as NOT ok. AleId NA");
+
                                                 notOkSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
                                                 notOkSchedItems = notOkSchedItems.OrderBy(o => o.activity).ToList();
                                             }
@@ -168,7 +182,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
                                 }
                             }
-                        }
+                        } i = 0;
                     }
                     //var values = line.Split(';');
                     //MessageBox.Show(i+", "+", line:" + line+ ", value 1: " + values[0]);

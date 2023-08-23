@@ -32,9 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            pictureBox9 = new PictureBox();
+            button5 = new Button();
             pictureBox2 = new PictureBox();
             button3 = new Button();
             tabPage2 = new TabPage();
+            pictureBox8 = new PictureBox();
             pictureBox7 = new PictureBox();
             pictureBox6 = new PictureBox();
             label4Notes = new Label();
@@ -114,13 +117,12 @@
             button2 = new Button();
             folderBrowserDialog1 = new FolderBrowserDialog();
             schedItemBindingSource2 = new BindingSource(components);
-            pictureBox8 = new PictureBox();
-            pictureBox9 = new PictureBox();
-            button5 = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -142,8 +144,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -170,6 +170,25 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Förbered resultat genom att välja fil som du sparade på Multi Access";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
+            pictureBox9.Location = new Point(15, 32);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(88, 51);
+            pictureBox9.TabIndex = 33;
+            pictureBox9.TabStop = false;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(8, 84);
+            button5.Name = "button5";
+            button5.Size = new Size(109, 78);
+            button5.TabIndex = 32;
+            button5.Text = "Personalens Lista";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button1_Click_visaPersonalLista;
             // 
             // pictureBox2
             // 
@@ -222,6 +241,15 @@
             tabPage2.Text = "Granska resultaten";
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
+            pictureBox8.Location = new Point(15, 32);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(88, 51);
+            pictureBox8.TabIndex = 31;
+            pictureBox8.TabStop = false;
             // 
             // pictureBox7
             // 
@@ -898,33 +926,6 @@
             // 
             schedItemBindingSource2.DataSource = typeof(SchedItem);
             // 
-            // pictureBox8
-            // 
-            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(15, 32);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(88, 51);
-            pictureBox8.TabIndex = 31;
-            pictureBox8.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(15, 32);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(88, 51);
-            pictureBox9.TabIndex = 33;
-            pictureBox9.TabStop = false;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(8, 84);
-            button5.Name = "button5";
-            button5.Size = new Size(109, 78);
-            button5.TabIndex = 32;
-            button5.Text = "Personalens Lista";
-            button5.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -939,9 +940,11 @@
             Text = "Övergripande Bemanning - Bro";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -966,8 +969,6 @@
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

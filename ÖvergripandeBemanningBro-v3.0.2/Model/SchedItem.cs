@@ -93,8 +93,9 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         public static bool isThePossibleSchedLineJourBilagaJ(string possibleSchedItemString)
         {
-            string activity = possibleSchedItemString.Split(';')[5].Trim();
+            string activity = possibleSchedItemString.Split(';')[5].Replace("\"",""). Trim();            
             if (activity == "Jour bilaga J")  {
+                //MessageBox.Show("Jour bilaga J found!");
                 return true;
             }
             return false;
@@ -126,7 +127,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         }
         public static bool isThePossibleSchedLineANightShift(List<string> listOfNightShiftTypes, string possibleSchedItemString)
         {
-            string activity = possibleSchedItemString.Split(';')[5].Trim();
+            string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
 
             if (listOfNightShiftTypes.Contains(activity))
             {
@@ -140,16 +141,16 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         //a filter-like function to checked details we must have before considering the sched item ok to be added to our new outcoming file
         public static bool isThePossibleSchedLineCleanAndWhatWeWant(List<string> listOfEnheter, string possibleSchedItemString)
         {
-            string firstName = possibleSchedItemString.Split(';')[0].Trim();
-            string lastName = possibleSchedItemString.Split(';')[1].Trim();
-            string signature = possibleSchedItemString.Split(';')[2].Trim();
-            string from = possibleSchedItemString.Split(';')[3].Trim();
-            string to = possibleSchedItemString.Split(';')[4].Trim();
-            string activity = possibleSchedItemString.Split(';')[5].Trim();
-            string off = possibleSchedItemString.Split(';')[6].Trim();
-            string shiftHours = possibleSchedItemString.Split(';')[7].Trim();
-            string tasks = possibleSchedItemString.Split(';')[8].Trim();
-            string note = possibleSchedItemString.Split(';')[9].Trim();
+            string firstName = possibleSchedItemString.Split(';')[0].Replace("\"", "").Trim();
+            string lastName = possibleSchedItemString.Split(';')[1].Replace("\"", "").Trim();
+            string signature = possibleSchedItemString.Split(';')[2].Replace("\"", "").Trim();
+            string from = possibleSchedItemString.Split(';')[3].Replace("\"", "").Trim();
+            string to = possibleSchedItemString.Split(';')[4].Replace("\"", "").Trim();
+            string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
+            string off = possibleSchedItemString.Split(';')[6].Replace("\"", "").Trim();
+            string shiftHours = possibleSchedItemString.Split(';')[7].Replace("\"", "").Trim();
+            string tasks = possibleSchedItemString.Split(';')[8].Replace("\"", "").Trim();
+            string note = possibleSchedItemString.Split(';')[9].Replace("\"", "").Trim();
             
             if (listOfEnheter.Contains(activity)) {
                 //this sched line/item can be added to the file
@@ -160,16 +161,33 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         public static SchedItem createSchedItemFromString(string possibleSchedItemString, string possibleAleId, string dateDetail)
         {
-            string firstName = possibleSchedItemString.Split(';')[0].Trim();
-            string lastName = possibleSchedItemString.Split(';')[1].Trim();
-            string signature = possibleSchedItemString.Split(';')[2].Trim();
-            string from = possibleSchedItemString.Split(';')[3].Trim() ;
-            string to = possibleSchedItemString.Split(';')[4].Trim();
-            string activity = possibleSchedItemString.Split(';')[5].Trim();
-            string off = possibleSchedItemString.Split(';')[6].Trim();
-            string shiftHours = possibleSchedItemString.Split(';')[7].Trim();
-            string tasks = possibleSchedItemString.Split(';')[8].Trim();
-            string note = possibleSchedItemString.Split(';')[9].Trim();
+            string firstName = possibleSchedItemString.Split(';')[0].Replace("\"", "").Trim();
+            string lastName = possibleSchedItemString.Split(';')[1].Replace("\"", "").Trim();
+            string signature = possibleSchedItemString.Split(';')[2].Replace("\"", "").Trim();
+            string from = possibleSchedItemString.Split(';')[3].Replace("\"", "").Trim() ;
+            string to = possibleSchedItemString.Split(';')[4].Replace("\"", "").Trim();
+            string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
+            string off = possibleSchedItemString.Split(';')[6].Replace("\"", "").Trim();
+            string shiftHours = possibleSchedItemString.Split(';')[7].Replace("\"", "").Trim();
+            //below for the cases like encountering this line: " 13:00";" 16:00";" APT";" 0";" 03:00";" ";" ";""
+            string tasks = "";
+            try
+            {
+                tasks = possibleSchedItemString.Split(';')[8].Replace("\"", "").Trim();
+            } catch (IndexOutOfRangeException iore)
+            {
+                tasks = "";
+            }
+            string note = "";
+            try
+            {
+                note = possibleSchedItemString.Split(';')[9].Replace("\"", "").Trim();
+            } catch (IndexOutOfRangeException iore)
+            {
+                note = "";
+            }
+            //MessageBox.Show("creating sched item: " + (firstName, lastName, possibleAleId, activity, dateDetail, from, to, off, note));
+
             //switch (activity)
             return new SchedItem(firstName, lastName, possibleAleId, activity, dateDetail, from, to, off, note);
         }

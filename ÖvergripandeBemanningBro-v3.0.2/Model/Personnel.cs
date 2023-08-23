@@ -32,6 +32,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2.Model
 
         public static string getMemberAleIdIfInDatabase(string possibleFirstName, string possibleLastName)
         {
+            //MessageBox.Show("get Personnel AleId for: first:" + possibleFirstName + ", last:" + possibleLastName);
             using (var context = new PersonnelContext())
             {
                 try
