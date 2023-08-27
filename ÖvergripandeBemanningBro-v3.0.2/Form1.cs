@@ -141,14 +141,16 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             {
                 //doing a check to see if unclearNotes should be sent to generate function or not
                 List<Note> unclearNotesToSend = new List<Note>();
-                if (checkBox1.Checked) { 
+                if (checkBox1.Checked)
+                {
                     unclearNotesToSend = unclearNotes;
-                } else
+                }
+                else
                 {
                     unclearNotesToSend.Clear();
                 }
                 var result = excel_CreateTheExcelFile.generate(okSchedItems, okPersonnelInFile, notes, unclearNotesToSend, fileLocation, fileName, language);
-                string smallDetails = "Arbetade med schemat som fanns i filjen: " + fileThatWasFed +
+                string smallDetails = "Arbetade med schemat som fanns i filen:\n " + fileThatWasFed +
                     "\nSpråk: " + language +
                     "\nAntal ok schema = " + okSchedItems.Count +
                     "\nAntal ej ok schema = " + notOkSchedItems.Count +

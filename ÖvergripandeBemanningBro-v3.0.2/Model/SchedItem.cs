@@ -19,6 +19,8 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         [DisplayName("Email ID")]
         public string emailId { get; set; }
+        public string signature { get; set; }
+
         [DisplayName("Activity")]
         public string activity { get; set; }
         [DisplayName("Date From")]
@@ -40,12 +42,13 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         [DisplayName("Shared")]
         public string shared { get; set; }
 
-        public SchedItem (string firstName, string lastName, string possibleAleId, string activity, string dateFrom, string timeFrom, string dateTo, string timeTo, string off, string note)
+        public SchedItem (string firstName, string lastName, string signature, string possibleAleId, string activity, string dateFrom, string timeFrom, string dateTo, string timeTo, string off, string note)
         {
             this.firstName = firstName;
             this.lastName = lastName;
             this.memberName = firstName + " " + lastName;
             this.emailId = possibleAleId; //getEmailIdFor(firstName, lastName);
+            this.signature = signature;
             this.activity = activity;
             this.dateFrom = dateFrom;
             this.timeFrom = timeFrom;
@@ -107,8 +110,11 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         //if notes belong to same day, they should become one note
         //since Microsoft Shifts takes only one note for each date.
-        public static List<Note> returnCondensedNotes(List<Note> notes)
+        public static List<Note> returnCondensedNotes(List<Note> clearNotes, List<Note> unclearNotes)
         {
+            List<Note> notes = new List<Note>();
+            notes.AddRange(clearNotes);
+            notes.AddRange(unclearNotes);
             List<string> listOfAllDates = new List<string>();
             for (int i=0; i<notes.Count; i++)
             {
@@ -133,7 +139,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 //doesn't work? var locationToAddInCondensedNotes = newCondensedNotes.IndexOf(n => n.date.Equals(curDate, StringComparison.Ordinal));
                 var locationToAddInCondensedNotes = newCondensedNotes.FindIndex(delegate(Note note) {
                     return note.date.Equals(curDate, StringComparison.Ordinal); });
-                    newCondensedNotes[locationToAddInCondensedNotes].note += "\n" + curNote;
+                    newCondensedNotes[locationToAddInCondensedNotes].note += " /// \n \n" + curNote;
             }
             return newCondensedNotes;
         }
@@ -256,7 +262,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             string dateFrom = dateDetail;
             string dateTo = getDateOfTomorrow(dateFrom);
             //MessageBox.Show("JourBilaga with dateFrom and dateTo:" + dateFrom + ", " + dateTo);
-            return new SchedItem(firstName, lastName, possibleAleId, activity, dateFrom, from, dateTo, to, off, note);
+            return new SchedItem(firstName, lastName, signature, possibleAleId, activity, dateFrom, from, dateTo, to, off, note);
         }
 
         //if Surte's night doesn't have a correct Ale Id personnel, we make use of this function to add sched as note
@@ -264,14 +270,14 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         {
             string firstName = previousLine.Split(';')[0].Replace("\"", "").Trim();
             string lastName = previousLine.Split(';')[1].Replace("\"", "").Trim();
-
+            string signature = actualLine.Split(';')[2].Replace("\"", "").Trim();
             string from = actualLine.Split(';')[3].Replace("\"", "").Trim();
             string to = actualLine.Split(';')[4].Replace("\"", "").Trim();
 
             string activity = actualLine.Split(';')[5].Replace("\"", "").Trim();
 
             return (firstName + " " + lastName +
-                ": " + from + "-" + to + ", " + activity);
+                ": " + from + "-" + to + ", " + signature + " " + activity);
         }
 
         public static string createNote(string possibleSchedItemString)
@@ -378,7 +384,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 dateTo = dateDetail;
             }
 
-            return new SchedItem(firstName, lastName, possibleAleId, activity, dateFrom, from, dateTo, to, off, note);
+            return new SchedItem(firstName, lastName, signature, possibleAleId, activity, dateFrom, from, dateTo, to, off, note);
         }
 
         public static List<Personnel> collectDistinctNotOkPersonnelFromSchedItems(List<SchedItem> schedItems)
