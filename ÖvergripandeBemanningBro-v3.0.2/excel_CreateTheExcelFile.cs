@@ -13,12 +13,13 @@ namespace ÖvergripandeBemanningBro_v3._0._2
     public class excel_CreateTheExcelFile
     {
         public static Tuple<string, string, string> generate(
-                        List<SchedItem> schedItems, 
-                        List<Personnel> okPersonnel,
-                        List<Note> notes,
-                        string fileLocation,
-                        string fileName,
-                        string language)
+                                                    List<SchedItem> schedItems, 
+                                                    List<Personnel> okPersonnel,
+                                                    List<Note> notes,
+                                                    List<Note> unclearNotes,
+                                                    string fileLocation,
+                                                    string fileName,
+                                                    string language)
         {
 
             //write commands to check schedItems once more now
@@ -35,7 +36,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 MessageBox.Show("Excel is not properly installed!");
             }
             createTheSheet_Arbetspass(schedItems, xlWorkbook, language);
-            createTheSheet_Dagsanteckningar(xlWorkbook, notes, language);
+            createTheSheet_Dagsanteckningar(xlWorkbook, notes, unclearNotes, language);
             createTheSheet_Medlemmar(xlWorkbook, okPersonnel, language);
 
             try
@@ -91,7 +92,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             }
         }
 
-        public static void createTheSheet_Dagsanteckningar(Excel.Workbook xlWorkbook, List<Note> notes, string language)
+        public static void createTheSheet_Dagsanteckningar(Excel.Workbook xlWorkbook, List<Note> notes, List<Note> unclearNotes, string language)
         {
             //wrong - this will create "Sheet2" then save the sheet1 ie arbetspass to Dagsanteckningar!
             //xlWorkbook.Sheets.Add();
@@ -116,6 +117,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             //since Microsoft Shifts takes only one note for each date.
             //PROVIDE THIS SOLUTION:
             notes = SchedItem.returnCondensedNotes(notes);
+            if (!unclearNotes.Any()) { MessageBox.Show("no request to include unclear notes"); }
 
             for (int iRecord = 0; iRecord < notes.Count; iRecord++)
             {

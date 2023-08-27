@@ -21,6 +21,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         List<SchedItem> okSchedItems = new List<SchedItem>();
         List<SchedItem> notOkSchedItems = new List<SchedItem>();
         List<Note> notes = new List<Note>();
+        List<Note> unclearNotes = new List<Note>();
 
         public void updateLabel(string text)
         {
@@ -98,13 +99,20 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
                 notes = tuple.Item6;
                 dataGridView5Notes.DataSource = notes;
+                label4Notes.Text = $"{notes.Count} Anteckningar övanpå dagarna";
 
-                toolStripStatusLabel1.Text = $"Det finns {okSchedItems.Count} stycken arbetspass som kan tillsättas i din ny fil, " + notes.Count + " anteckningar.";
+                unclearNotes = tuple.Item7;
+                dataGridView5UnclearNotes.DataSource = unclearNotes;
+                checkBox1.Text = $"Tillsätt {unclearNotes.Count} anteckningar övanpå dagarna också:";
+
                 label4OkPersonal.Text = okPersonnelInFile.Count + " Personal som kommer finnas i färdiga filen:";
                 label5NotOkPersonal.Text = notOkPersonnelInFile.Count + " Personal som inte hittades i databasen.";
                 label6OkSchema.Text = okSchedItems.Count + " Schema som ska tillsättas i  den nya exporterade filen:";
                 label7NotOkSchema.Text = notOkSchedItems.Count + " Schema som inte kommer tillsättas i  den nya exporterade filen:";
-                label4FileNameArbetarMed.Text = "Arbetar med filen: " + fileThatWasFed;
+                //MessageBox.Show(fileThatWasFed.ToString());
+                label4FileNameArbetarMed.Text = fileThatWasFed.ToString();
+                toolStripStatusLabel1.Text = $"Det finns {okSchedItems.Count} stycken arbetspass som kan tillsättas i din ny fil, " + notes.Count + " anteckningar, " + unclearNotes.Count + " \"möjliga\" anteckningar om du väljer dem för tillsättning.";
+
             }
 
         }
@@ -131,7 +139,15 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             //schedItems and okPersonnelInFile is preset
             if (okSchedItems.Count > 0)
             {
-                var result = excel_CreateTheExcelFile.generate(okSchedItems, okPersonnelInFile, notes, fileLocation, fileName, language);
+                //doing a check to see if unclearNotes should be sent to generate function or not
+                List<Note> unclearNotesToSend = new List<Note>();
+                if (checkBox1.Checked) { 
+                    unclearNotesToSend = unclearNotes;
+                } else
+                {
+                    unclearNotesToSend.Clear();
+                }
+                var result = excel_CreateTheExcelFile.generate(okSchedItems, okPersonnelInFile, notes, unclearNotesToSend, fileLocation, fileName, language);
                 string smallDetails = "Arbetade med schemat som fanns i filjen: " + fileThatWasFed +
                     "\nSpråk: " + language +
                     "\nAntal ok schema = " + okSchedItems.Count +
@@ -212,6 +228,11 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         }
 
         private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView5UnclearNotes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

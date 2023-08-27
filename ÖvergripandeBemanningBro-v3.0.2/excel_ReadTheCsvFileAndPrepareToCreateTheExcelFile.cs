@@ -11,27 +11,15 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 {
     public class excel_ReadTheCsvFileAndPrepareToCreateTheExcelFile
     {
-        public static Tuple<List<DateTime>,List<Personnel>,List<Personnel>, List<SchedItem>, List<SchedItem>, List<Note>> prepare(string fromFile, ToolStripStatusLabel toolStripStatusLabel1, ToolStripProgressBar toolStripProgressBar)
+        public static Tuple<List<DateTime>,List<Personnel>,List<Personnel>, List<SchedItem>, List<SchedItem>, List<Note>, List<Note>> prepare(string fromFile, ToolStripStatusLabel toolStripStatusLabel1, ToolStripProgressBar toolStripProgressBar)
         {
-            toolStripStatusLabel1.Text = "Filen läses...";    
+            toolStripStatusLabel1.Text = "Läser filen...";    
             List<DateTime> datesInTheFile = new List<DateTime>();
             List<SchedItem> okSchedItems = new List<SchedItem>();
             List<SchedItem> notOkSchedItems = new List<SchedItem>();
-
-            List<string> listOfEnheter = new List<string>();
-            listOfEnheter.Add("Björklövsvägen");
-            listOfEnheter.Add("Surtehöjd");
-            listOfEnheter.Add("Klöverstigen");
-            listOfEnheter.Add("Björklövsvägen NATT");
-            listOfEnheter.Add("Klöverstigen NATT");
-            listOfEnheter.Add("Jour bilaga J");
-
-            List<string> listOfNightShiftTypes = new List<string>();
-            listOfNightShiftTypes.Add("Björklövsvägen NATT");
-            listOfNightShiftTypes.Add("Klöverstigen NATT");
-            listOfNightShiftTypes.Add("Jour bilaga J"); //not really used. has its own function
             
             List<Note> notes = new List<Note>();
+            List<Note> unclearNotes = new List<Note>();
 
             var file = File.ReadAllLines(fromFile);
             int fileLength = file.Length;
@@ -135,41 +123,55 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                         string possibleLastNameInSched = possibleSchedLine.Split(';')[1].Replace("\"", "").Trim();
                                         //MessageBox.Show("for AleId, possible first name: " + possibleFirstNameInSched + ", last name: " + possibleLastNameInSched);
                                         string possibleAleId = Personnel.getMemberAleIdIfInDatabase(possibleFirstNameInSched, possibleLastNameInSched);
+
+
                                         if (SchedItem.isThePossibleSchedLineJourBilagaJ(possibleSchedLine))
                                         {
-                                            notes.Add(new Note(thisDateDetail, SchedItem.createANighJourBilagaDetail(possibleSchedLine, considerPreviousLine)));
-                                            //add as a note and not as a sched line but need the previous line's person since it is him/her who has the Jour Bilaga J
-                                        } else
+                                            //the previous line should have a valid personal AleId:
+                                            possibleAleId = SchedItem.getTheJourBilagaAleId(considerPreviousLine);
+                                            if (possibleAleId  != "NA")
+                                            {
+                                                //as note: notes.Add(new Note(thisDateDetail, SchedItem.createNoteOfANighJourBilagaDetail(possibleSchedLine, considerPreviousLine)));
+                                                okSchedItems.Add(SchedItem.createSchedItemOfANighJourBilagaDetail(possibleSchedLine, possibleAleId, thisDateDetail, considerPreviousLine));
+                                            } else
+                                            {
+                                                //add jour bilaga as a note
+                                                //The Jour Bilaga has an AleId that is NA meaning the person is not in database, meaning he is probably a vikarie and should be added as a note
+                                                notes.Add(new Note(thisDateDetail, SchedItem.createNoteOfANighJourBilagaDetail(possibleSchedLine, considerPreviousLine)));
+                                            }
+                                        } else if (SchedItem.isThePossibleSchedLineForAnActivityEnhetThatWeWant(possibleSchedLine))
                                         {
                                             if (possibleAleId != "NA")
                                             {
-                                                if (SchedItem.isThePossibleSchedLineCleanAndWhatWeWant(listOfEnheter, possibleSchedLine))
+                                                /* not needed, added as usual sched line:
+                                                if (SchedItem.isThePossibleSchedLineANightShift(listOfNightShiftTypes, possibleSchedLine))
                                                 {
-                                                    if (SchedItem.isThePossibleSchedLineANightShift(listOfNightShiftTypes, possibleSchedLine))
-                                                    {
-                                                        notes.Add(new Note(thisDateDetail, SchedItem.createANightShiftDetail(possibleSchedLine)));
-                                                    } else
-                                                    {
-                                                        //MessageBox.Show("adding as ok");
-                                                        okSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    //can uncheck this to see what we mean by unclean and still adding
-                                                    //MessageBox.Show("adding as NOT ok. not clean and what we want");
-                                                    
-                                                    notOkSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
-                                                }
-                                            }
-                                            else
+                                                    notes.Add(new Note(thisDateDetail, SchedItem.createANightShiftDetail(possibleSchedLine)));
+                                                } else
+                                                {*/
+                                                //MessageBox.Show("adding as ok");
+                                                okSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
+                                            } else
                                             {
+                                                if (SchedItem.isThePossibleSchedLineUnclearInFirstNameAndLastName(possibleSchedLine))
+                                                {
+                                                    unclearNotes.Add(new Note(thisDateDetail, SchedItem.createNote(possibleSchedLine)));
+                                                } else
+                                                {
+                                                    notes.Add(new Note(thisDateDetail, SchedItem.createNote(possibleSchedLine)));
+                                                }
+
+                                            }
+                                        } else if (SchedItem.canWeStillMakeSenseOfThePossibleSchedLineActivityAndSignatureInOrderToAddItAsUnclearNote(possibleSchedLine))
+                                        {
+                                            unclearNotes.Add(new Note(thisDateDetail, SchedItem.createNote(possibleSchedLine)));
+                                        }
+                                        else
+                                        {
                                                 //MessageBox.Show("adding as NOT ok. AleId NA");
 
                                                 notOkSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
                                                 notOkSchedItems = notOkSchedItems.OrderBy(o => o.activity).ToList();
-                                            }
-
                                         }
 
                                     }
@@ -215,7 +217,8 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                         notOkListsOfPersonnelInSchedItems,
                         okSchedItems,
                         notOkSchedItems,
-                        notes)
+                        notes,
+                        unclearNotes)
                     );
 
         }

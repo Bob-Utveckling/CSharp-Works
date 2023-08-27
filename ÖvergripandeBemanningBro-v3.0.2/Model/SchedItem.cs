@@ -40,22 +40,69 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         [DisplayName("Shared")]
         public string shared { get; set; }
 
-        public SchedItem (string firstName, string lastName, string possibleAleId, string activity, string dateDetail, string timeFrom, string timeTo, string off, string note)
+        public SchedItem (string firstName, string lastName, string possibleAleId, string activity, string dateFrom, string timeFrom, string dateTo, string timeTo, string off, string note)
         {
             this.firstName = firstName;
             this.lastName = lastName;
             this.memberName = firstName + " " + lastName;
             this.emailId = possibleAleId; //getEmailIdFor(firstName, lastName);
             this.activity = activity;
-            this.dateFrom = dateDetail;
+            this.dateFrom = dateFrom;
             this.timeFrom = timeFrom;
-            this.dateTo = dateDetail;
+            this.dateTo = dateTo;
             this.timeTo = timeTo;
             this.themeColor = getThemeColorFor(activity, "sv");
             this.etikett = "";
             this.off = off;
             this.note = note;
             this.shared = "1. Delat";
+        }
+
+        public static List<string> returnListOfNightShiftTypes()
+        {
+            List<string> listOfNightShiftTypes = new List<string>();
+            listOfNightShiftTypes.Add("Björklövsvägen NATT");
+            listOfNightShiftTypes.Add("Klöverstigen NATT");
+            listOfNightShiftTypes.Add("Jour bilaga J");
+            return listOfNightShiftTypes;
+        }
+
+        public static List<string> returnListOfActivityEnheter()
+        {
+            List<string> listOfEnheter = new List<string>();
+            listOfEnheter.Add("Björklövsvägen");
+            listOfEnheter.Add("Surtehöjd");
+            listOfEnheter.Add("Klöverstigen");
+            listOfEnheter.Add("Björklövsvägen NATT");
+            listOfEnheter.Add("Klöverstigen NATT");
+            //listOfEnheter.Add("Jour bilaga J"); //treated separately
+            return listOfEnheter;
+        }
+
+        public static List<string> returnListOfOkSignatures()
+        {
+            List<string> listOfOkSignatures = new List<string>();
+            listOfOkSignatures.Add("B".ToLower());
+            listOfOkSignatures.Add("Björklövsvägen".ToLower());
+            listOfOkSignatures.Add("BN".ToLower());
+            listOfOkSignatures.Add("Jour bilaga J".ToLower());
+            listOfOkSignatures.Add("KLÖ".ToLower());
+            listOfOkSignatures.Add("Natt klöver".ToLower());
+            listOfOkSignatures.Add("NKLÖ".ToLower());
+            listOfOkSignatures.Add("Surte".ToLower());
+            listOfOkSignatures.Add("Surtehöjd".ToLower());
+            return listOfOkSignatures;
+        }
+
+        public static List<String> returnListOfStillOkActivitiesForFindingOkSchedAsNote()
+        {
+            List<string> listOfStillOkActivitiesForFindingOkSchedAsNote = new List<string>();
+            listOfStillOkActivitiesForFindingOkSchedAsNote.Add("");
+            listOfStillOkActivitiesForFindingOkSchedAsNote.Add(" ");
+            listOfStillOkActivitiesForFindingOkSchedAsNote.Add("*");
+            listOfStillOkActivitiesForFindingOkSchedAsNote.Add("Bokat resurspass".ToLower());
+            listOfStillOkActivitiesForFindingOkSchedAsNote.Add("Resurspass Bemanning".ToLower());
+            return listOfStillOkActivitiesForFindingOkSchedAsNote;
         }
 
         //if notes belong to same day, they should become one note
@@ -91,6 +138,15 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             return newCondensedNotes;
         }
 
+
+        public static string getTheJourBilagaAleId(string previousLine)
+        {
+            string firstName = previousLine.Split(';')[0].Replace("\"", "").Trim();
+            string lastName = previousLine.Split(';')[1].Replace("\"", "").Trim();
+            string possibleAleId = Personnel.getMemberAleIdIfInDatabase(firstName, lastName);
+            return possibleAleId;
+        }
+
         public static bool isThePossibleSchedLineJourBilagaJ(string possibleSchedItemString)
         {
             string activity = possibleSchedItemString.Split(';')[5].Replace("\"",""). Trim();            
@@ -101,29 +157,133 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             return false;
         }
 
-        public static string createANighJourBilagaDetail(string actualLine, string previousLine)
+        public static string getDateOfTomorrow(string todaysDate)
         {
-            string firstName = previousLine.Split(';')[0].Trim();
-            string lastName = previousLine.Split(';')[1].Trim();
+            DateTime today = DateTime.Parse(todaysDate);
+            DateTime tomorrow = today.AddDays(1);
+            string string_tomorrow = tomorrow.ToString("yyyy-MM-dd").Split(" ")[0]; //=> 2023-07-02 for July second 2023
 
-            string from = actualLine.Split(';')[3].Trim();
-            string to = actualLine.Split(';')[4].Trim();
+            //MessageBox.Show("today's date: " + todaysDate + ", tomorrow's date: " + string_tomorrow);
+            //MessageBox.Show("string_tomorrow: " + string_tomorrow);
 
-            string activity = actualLine.Split(';')[5].Trim();
+            return string_tomorrow;
+        }
+
+        public static bool canWeStillMakeSenseOfThePossibleSchedLineActivityAndSignatureInOrderToAddItAsUnclearNote(string possibleSchedItemString)
+        {
+            string firstName = possibleSchedItemString.Split(';')[0].Replace("\"", "").Trim();
+            string lastName = possibleSchedItemString.Split(';')[1].Replace("\"", "").Trim();
+            string signature = possibleSchedItemString.Split(';')[2].Replace("\"", "").Trim();
+            string from = possibleSchedItemString.Split(';')[3].Replace("\"", "").Trim();
+            string to = possibleSchedItemString.Split(';')[4].Replace("\"", "").Trim();
+            string activity = "";
+            if (possibleSchedItemString.Split(';')[5]==" ")
+            {
+                activity = " ";
+            } else
+            {
+                activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
+            }
+            string off = possibleSchedItemString.Split(';')[6].Replace("\"", "").Trim();
+            string shiftHours = possibleSchedItemString.Split(';')[7].Replace("\"", "").Trim();
+
+            string tasks = "";
+            try
+            {
+                tasks = possibleSchedItemString.Split(';')[8].Replace("\"", "").Trim();
+            }
+            catch (IndexOutOfRangeException iore)
+            {
+                tasks = "";
+            }
+            string note = "";
+            try
+            {
+                note = possibleSchedItemString.Split(';')[9].Replace("\"", "").Trim();
+            }
+            catch (IndexOutOfRangeException iore)
+            {
+                note = "";
+            }
+            
+            if (returnListOfOkSignatures().Contains(signature.ToLower())
+                &&
+                returnListOfStillOkActivitiesForFindingOkSchedAsNote().Contains(activity.ToLower())
+                )
+            {
+                //this sched line/item can be added as a note because signature is recognized yet activity is in our list of exceptions (i.e. not for example 'Föräldraledigt hel vecka')
+                return true;
+            }
+            return false;
+        }
+        public static bool isThePossibleSchedLineUnclearInFirstNameAndLastName(string getSchedLine)
+        {
+            string firstName = getSchedLine.Split(';')[0].Replace("\"", "").Trim();
+            string lastName = getSchedLine.Split(';')[1].Replace("\"", "").Trim();
+            if (firstName=="" && lastName=="") { return true; }
+            else { return false; }
+        }
+        public static SchedItem createSchedItemOfANighJourBilagaDetail(string possibleSchedItemString, string possibleAleId, string dateDetail, string previousLine)
+        {
+            string firstName = previousLine.Split(';')[0].Replace("\"", "").Trim();
+            string lastName = previousLine.Split(';')[1].Replace("\"", "").Trim();
+
+            string signature = possibleSchedItemString.Split(';')[2].Replace("\"", "").Trim();
+            string from = possibleSchedItemString.Split(';')[3].Replace("\"", "").Trim();
+            string to = possibleSchedItemString.Split(';')[4].Replace("\"", "").Trim();
+            string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
+            string off = possibleSchedItemString.Split(';')[6].Replace("\"", "").Trim();
+            string shiftHours = possibleSchedItemString.Split(';')[7].Replace("\"", "").Trim();
+            //below for the cases like encountering this line: " 13:00";" 16:00";" APT";" 0";" 03:00";" ";" ";""
+            string tasks = "";
+            try
+            {
+                tasks = possibleSchedItemString.Split(';')[8].Replace("\"", "").Trim();
+            }
+            catch (IndexOutOfRangeException iore)
+            {
+                tasks = "";
+            }
+            string note = "";
+            try
+            {
+                note = possibleSchedItemString.Split(';')[9].Replace("\"", "").Trim();
+            }
+            catch (IndexOutOfRangeException iore)
+            {
+                note = "";
+            }
+            string dateFrom = dateDetail;
+            string dateTo = getDateOfTomorrow(dateFrom);
+            //MessageBox.Show("JourBilaga with dateFrom and dateTo:" + dateFrom + ", " + dateTo);
+            return new SchedItem(firstName, lastName, possibleAleId, activity, dateFrom, from, dateTo, to, off, note);
+        }
+
+        //if Surte's night doesn't have a correct Ale Id personnel, we make use of this function to add sched as note
+        public static string createNoteOfANighJourBilagaDetail(string actualLine, string previousLine)
+        {
+            string firstName = previousLine.Split(';')[0].Replace("\"", "").Trim();
+            string lastName = previousLine.Split(';')[1].Replace("\"", "").Trim();
+
+            string from = actualLine.Split(';')[3].Replace("\"", "").Trim();
+            string to = actualLine.Split(';')[4].Replace("\"", "").Trim();
+
+            string activity = actualLine.Split(';')[5].Replace("\"", "").Trim();
 
             return (firstName + " " + lastName +
                 ": " + from + "-" + to + ", " + activity);
         }
 
-        public static string createANightShiftDetail(string possibleSchedItemString)
+        public static string createNote(string possibleSchedItemString)
         {
-            string firstName = possibleSchedItemString.Split(';')[0].Trim();
-            string lastName = possibleSchedItemString.Split(';')[1].Trim();
-            string from = possibleSchedItemString.Split(';')[3].Trim();
-            string to = possibleSchedItemString.Split(';')[4].Trim();
-            string activity = possibleSchedItemString.Split(';')[5].Trim();
+            string firstName = possibleSchedItemString.Split(';')[0].Replace("\"", "").Trim();
+            string lastName = possibleSchedItemString.Split(';')[1].Replace("\"", "").Trim();
+            string signature = possibleSchedItemString.Split(';')[2].Replace("\"", "").Trim();
+            string from = possibleSchedItemString.Split(';')[3].Replace("\"", "").Trim();
+            string to = possibleSchedItemString.Split(';')[4].Replace("\"", "").Trim();
+            string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
             return (firstName + " " + lastName +
-                ": " + from + "-" + to + ", " + activity) ;
+                ": " + from + "-" + to + ", " + signature + ", " + activity) ;
         }
         public static bool isThePossibleSchedLineANightShift(List<string> listOfNightShiftTypes, string possibleSchedItemString)
         {
@@ -139,7 +299,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         }
 
         //a filter-like function to checked details we must have before considering the sched item ok to be added to our new outcoming file
-        public static bool isThePossibleSchedLineCleanAndWhatWeWant(List<string> listOfEnheter, string possibleSchedItemString)
+        public static bool isThePossibleSchedLineForAnActivityEnhetThatWeWant(string possibleSchedItemString)
         {
             string firstName = possibleSchedItemString.Split(';')[0].Replace("\"", "").Trim();
             string lastName = possibleSchedItemString.Split(';')[1].Replace("\"", "").Trim();
@@ -149,10 +309,27 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
             string off = possibleSchedItemString.Split(';')[6].Replace("\"", "").Trim();
             string shiftHours = possibleSchedItemString.Split(';')[7].Replace("\"", "").Trim();
-            string tasks = possibleSchedItemString.Split(';')[8].Replace("\"", "").Trim();
-            string note = possibleSchedItemString.Split(';')[9].Replace("\"", "").Trim();
-            
-            if (listOfEnheter.Contains(activity)) {
+
+            string tasks = "";
+            try
+            {
+                tasks = possibleSchedItemString.Split(';')[8].Replace("\"", "").Trim();
+            }
+            catch (IndexOutOfRangeException iore)
+            {
+                tasks = "";
+            }
+            string note = "";
+            try
+            {
+                note = possibleSchedItemString.Split(';')[9].Replace("\"", "").Trim();
+            }
+            catch (IndexOutOfRangeException iore)
+            {
+                note = "";
+            }
+
+            if (returnListOfActivityEnheter().Contains(activity)) {
                 //this sched line/item can be added to the file
                 return true;
             }
@@ -187,9 +364,21 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 note = "";
             }
             //MessageBox.Show("creating sched item: " + (firstName, lastName, possibleAleId, activity, dateDetail, from, to, off, note));
+            List<string> nightShiftTypes = returnListOfNightShiftTypes();
+            string dateFrom = "";
+            string dateTo = "";
+            if (nightShiftTypes.Contains(activity))
+            {
+                dateFrom = dateDetail;
+                dateTo = getDateOfTomorrow(dateFrom);
+                //MessageBox.Show("Night shift found -- dateFrom, dateTo: " + dateFrom + ", " + dateTo);
+            } else
+            {
+                dateFrom = dateDetail;
+                dateTo = dateDetail;
+            }
 
-            //switch (activity)
-            return new SchedItem(firstName, lastName, possibleAleId, activity, dateDetail, from, to, off, note);
+            return new SchedItem(firstName, lastName, possibleAleId, activity, dateFrom, from, dateTo, to, off, note);
         }
 
         public static List<Personnel> collectDistinctNotOkPersonnelFromSchedItems(List<SchedItem> schedItems)

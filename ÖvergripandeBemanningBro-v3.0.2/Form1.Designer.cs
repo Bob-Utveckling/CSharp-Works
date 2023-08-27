@@ -30,14 +30,32 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
-            pictureBox9 = new PictureBox();
-            button5 = new Button();
-            pictureBox2 = new PictureBox();
-            button3 = new Button();
-            tabPage2 = new TabPage();
+            noteBindingSource1 = new BindingSource(components);
+            noteBindingSource = new BindingSource(components);
+            schedItemBindingSource1 = new BindingSource(components);
+            schedItemBindingSource3 = new BindingSource(components);
+            personnelBindingSource1 = new BindingSource(components);
+            personnelBindingSource = new BindingSource(components);
             pictureBox8 = new PictureBox();
+            label4FileNameArbetarMed = new Label();
+            button1 = new Button();
+            schedItemBindingSource = new BindingSource(components);
+            pictureBox1 = new PictureBox();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            toolStripProgressBar1 = new ToolStripProgressBar();
+            button2 = new Button();
+            folderBrowserDialog1 = new FolderBrowserDialog();
+            schedItemBindingSource2 = new BindingSource(components);
+            tabPage3 = new TabPage();
+            createdFileDateTimeDetailTextbox = new Label();
+            resultSmallDetailsTextbox = new Label();
+            resultMessageTextbox = new Label();
+            tabPage2 = new TabPage();
+            checkBox1 = new CheckBox();
+            dataGridView5UnclearNotes = new DataGridView();
+            dateDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            noteDataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             pictureBox7 = new PictureBox();
             pictureBox6 = new PictureBox();
             label4Notes = new Label();
@@ -45,8 +63,6 @@
             dataGridView5Notes = new DataGridView();
             dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             noteDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            noteBindingSource = new BindingSource(components);
-            label4FileNameArbetarMed = new Label();
             label7NotOkSchema = new Label();
             panel1 = new Panel();
             label4 = new Label();
@@ -74,7 +90,6 @@
             offDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             noteDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             sharedDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            schedItemBindingSource1 = new BindingSource(components);
             label6OkSchema = new Label();
             dataGridView3 = new DataGridView();
             activity = new DataGridViewTextBoxColumn();
@@ -90,137 +105,208 @@
             offDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             noteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             sharedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            schedItemBindingSource3 = new BindingSource(components);
             label5NotOkPersonal = new Label();
-            button1 = new Button();
             label4OkPersonal = new Label();
             dataGridView2 = new DataGridView();
             firstNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             lastNameDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             aleIdDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            personnelBindingSource1 = new BindingSource(components);
             dataGridView1 = new DataGridView();
             firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             aleIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            personnelBindingSource = new BindingSource(components);
-            tabPage3 = new TabPage();
-            createdFileDateTimeDetailTextbox = new Label();
-            resultSmallDetailsTextbox = new Label();
-            resultMessageTextbox = new Label();
-            schedItemBindingSource = new BindingSource(components);
-            pictureBox1 = new PictureBox();
-            statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
-            toolStripProgressBar1 = new ToolStripProgressBar();
-            label1 = new Label();
-            button2 = new Button();
-            folderBrowserDialog1 = new FolderBrowserDialog();
-            schedItemBindingSource2 = new BindingSource(components);
-            tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView5Notes).BeginInit();
+            tabPage1 = new TabPage();
+            pictureBox2 = new PictureBox();
+            button3 = new Button();
+            tabControl1 = new TabControl();
+            ((System.ComponentModel.ISupportInitialize)noteBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)noteBindingSource).BeginInit();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).BeginInit();
-            tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource2).BeginInit();
+            tabPage3.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5UnclearNotes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5Notes).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            tabControl1.SuspendLayout();
             SuspendLayout();
             // 
-            // tabControl1
+            // noteBindingSource1
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Location = new Point(12, 52);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1204, 762);
-            tabControl1.TabIndex = 0;
+            noteBindingSource1.DataSource = typeof(Model.Note);
             // 
-            // tabPage1
+            // noteBindingSource
             // 
-            tabPage1.Controls.Add(pictureBox9);
-            tabPage1.Controls.Add(button5);
-            tabPage1.Controls.Add(pictureBox2);
-            tabPage1.Controls.Add(button3);
-            tabPage1.Location = new Point(4, 29);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1196, 729);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Förbered resultat genom att välja fil som du sparade på Multi Access";
-            tabPage1.UseVisualStyleBackColor = true;
+            noteBindingSource.DataSource = typeof(Model.Note);
             // 
-            // pictureBox9
+            // schedItemBindingSource1
             // 
-            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(15, 32);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(88, 51);
-            pictureBox9.TabIndex = 33;
-            pictureBox9.TabStop = false;
+            schedItemBindingSource1.DataSource = typeof(SchedItem);
             // 
-            // button5
+            // schedItemBindingSource3
             // 
-            button5.Location = new Point(8, 84);
-            button5.Name = "button5";
-            button5.Size = new Size(109, 78);
-            button5.TabIndex = 32;
-            button5.Text = "Personalens Lista";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button1_Click_visaPersonalLista;
+            schedItemBindingSource3.DataSource = typeof(SchedItem);
             // 
-            // pictureBox2
+            // personnelBindingSource1
             // 
-            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.InitialImage = (Image)resources.GetObject("pictureBox2.InitialImage");
-            pictureBox2.Location = new Point(260, 274);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(167, 172);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 1;
-            pictureBox2.TabStop = false;
+            personnelBindingSource1.DataSource = typeof(Model.Personnel);
             // 
-            // button3
+            // personnelBindingSource
             // 
-            button3.Location = new Point(149, 204);
-            button3.Name = "button3";
-            button3.Size = new Size(567, 64);
-            button3.TabIndex = 0;
-            button3.Text = "Välj din fil som du har sparat (exporterat) i Multi Access som har 'tjänstgöringslista'";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click_valjFil;
+            personnelBindingSource.DataSource = typeof(Model.Personnel);
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
+            pictureBox8.Location = new Point(167, 10);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(44, 31);
+            pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox8.TabIndex = 31;
+            pictureBox8.TabStop = false;
+            // 
+            // label4FileNameArbetarMed
+            // 
+            label4FileNameArbetarMed.BorderStyle = BorderStyle.Fixed3D;
+            label4FileNameArbetarMed.Location = new Point(226, 12);
+            label4FileNameArbetarMed.Name = "label4FileNameArbetarMed";
+            label4FileNameArbetarMed.Size = new Size(866, 25);
+            label4FileNameArbetarMed.TabIndex = 25;
+            label4FileNameArbetarMed.Text = "Arbetar med filen: (välj fil)";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(16, 10);
+            button1.Name = "button1";
+            button1.Size = new Size(145, 26);
+            button1.TabIndex = 1;
+            button1.Text = "Personalens Lista";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_visaPersonalLista;
+            // 
+            // schedItemBindingSource
+            // 
+            schedItemBindingSource.DataSource = typeof(SchedItem);
+            schedItemBindingSource.CurrentChanged += schedItemBindingSource_CurrentChanged;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(1154, 10);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(51, 63);
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1 });
+            statusStrip1.Location = new Point(0, 817);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(1228, 26);
+            statusStrip1.TabIndex = 3;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(613, 20);
+            toolStripStatusLabel1.Text = "Redo - Övergripande Bemanning - Bro Mellan Multi Access och Microsoft Shifts/Arbetspass";
+            // 
+            // toolStripProgressBar1
+            // 
+            toolStripProgressBar1.Name = "toolStripProgressBar1";
+            toolStripProgressBar1.Size = new Size(300, 18);
+            // 
+            // button2
+            // 
+            button2.Location = new Point(1098, 12);
+            button2.Name = "button2";
+            button2.Size = new Size(47, 29);
+            button2.TabIndex = 5;
+            button2.Text = "Om";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // folderBrowserDialog1
+            // 
+            folderBrowserDialog1.HelpRequest += folderBrowserDialog1_HelpRequest;
+            // 
+            // schedItemBindingSource2
+            // 
+            schedItemBindingSource2.DataSource = typeof(SchedItem);
+            // 
+            // tabPage3
+            // 
+            tabPage3.BackgroundImage = (Image)resources.GetObject("tabPage3.BackgroundImage");
+            tabPage3.Controls.Add(createdFileDateTimeDetailTextbox);
+            tabPage3.Controls.Add(resultSmallDetailsTextbox);
+            tabPage3.Controls.Add(resultMessageTextbox);
+            tabPage3.Location = new Point(4, 29);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1196, 729);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Färdig resultat";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // createdFileDateTimeDetailTextbox
+            // 
+            createdFileDateTimeDetailTextbox.AutoSize = true;
+            createdFileDateTimeDetailTextbox.Location = new Point(244, 354);
+            createdFileDateTimeDetailTextbox.Name = "createdFileDateTimeDetailTextbox";
+            createdFileDateTimeDetailTextbox.Size = new Size(256, 20);
+            createdFileDateTimeDetailTextbox.TabIndex = 2;
+            createdFileDateTimeDetailTextbox.Text = "Datum och tid för din nya fil visas här";
+            // 
+            // resultSmallDetailsTextbox
+            // 
+            resultSmallDetailsTextbox.AutoSize = true;
+            resultSmallDetailsTextbox.Location = new Point(242, 384);
+            resultSmallDetailsTextbox.Name = "resultSmallDetailsTextbox";
+            resultSmallDetailsTextbox.Size = new Size(177, 20);
+            resultSmallDetailsTextbox.TabIndex = 1;
+            resultSmallDetailsTextbox.Text = "Mer information visas här";
+            // 
+            // resultMessageTextbox
+            // 
+            resultMessageTextbox.AutoSize = true;
+            resultMessageTextbox.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            resultMessageTextbox.Location = new Point(176, 194);
+            resultMessageTextbox.Name = "resultMessageTextbox";
+            resultMessageTextbox.Size = new Size(451, 35);
+            resultMessageTextbox.TabIndex = 0;
+            resultMessageTextbox.Text = "Resultat meddelande kommer visas här";
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(pictureBox8);
+            tabPage2.Controls.Add(checkBox1);
+            tabPage2.Controls.Add(dataGridView5UnclearNotes);
             tabPage2.Controls.Add(pictureBox7);
             tabPage2.Controls.Add(pictureBox6);
             tabPage2.Controls.Add(label4Notes);
             tabPage2.Controls.Add(pictureBox5);
             tabPage2.Controls.Add(dataGridView5Notes);
-            tabPage2.Controls.Add(label4FileNameArbetarMed);
             tabPage2.Controls.Add(label7NotOkSchema);
             tabPage2.Controls.Add(panel1);
             tabPage2.Controls.Add(pictureBox4);
@@ -229,7 +315,6 @@
             tabPage2.Controls.Add(label6OkSchema);
             tabPage2.Controls.Add(dataGridView3);
             tabPage2.Controls.Add(label5NotOkPersonal);
-            tabPage2.Controls.Add(button1);
             tabPage2.Controls.Add(label4OkPersonal);
             tabPage2.Controls.Add(dataGridView2);
             tabPage2.Controls.Add(dataGridView1);
@@ -242,14 +327,45 @@
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
             // 
-            // pictureBox8
+            // checkBox1
             // 
-            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(15, 32);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(88, 51);
-            pictureBox8.TabIndex = 31;
-            pictureBox8.TabStop = false;
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(525, 25);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(366, 24);
+            checkBox1.TabIndex = 35;
+            checkBox1.Text = "Tillsätt de här anteckningar övanpå dagarna också:";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView5UnclearNotes
+            // 
+            dataGridView5UnclearNotes.AutoGenerateColumns = false;
+            dataGridView5UnclearNotes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView5UnclearNotes.Columns.AddRange(new DataGridViewColumn[] { dateDataGridViewTextBoxColumn1, noteDataGridViewTextBoxColumn3 });
+            dataGridView5UnclearNotes.DataSource = noteBindingSource1;
+            dataGridView5UnclearNotes.Location = new Point(537, 55);
+            dataGridView5UnclearNotes.Name = "dataGridView5UnclearNotes";
+            dataGridView5UnclearNotes.RowHeadersWidth = 51;
+            dataGridView5UnclearNotes.RowTemplate.Height = 29;
+            dataGridView5UnclearNotes.Size = new Size(344, 131);
+            dataGridView5UnclearNotes.TabIndex = 32;
+            dataGridView5UnclearNotes.CellContentClick += dataGridView5UnclearNotes_CellContentClick;
+            // 
+            // dateDataGridViewTextBoxColumn1
+            // 
+            dateDataGridViewTextBoxColumn1.DataPropertyName = "date";
+            dateDataGridViewTextBoxColumn1.HeaderText = "date";
+            dateDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dateDataGridViewTextBoxColumn1.Name = "dateDataGridViewTextBoxColumn1";
+            dateDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // noteDataGridViewTextBoxColumn3
+            // 
+            noteDataGridViewTextBoxColumn3.DataPropertyName = "note";
+            noteDataGridViewTextBoxColumn3.HeaderText = "note";
+            noteDataGridViewTextBoxColumn3.MinimumWidth = 6;
+            noteDataGridViewTextBoxColumn3.Name = "noteDataGridViewTextBoxColumn3";
+            noteDataGridViewTextBoxColumn3.Width = 350;
             // 
             // pictureBox7
             // 
@@ -274,7 +390,7 @@
             // label4Notes
             // 
             label4Notes.AutoSize = true;
-            label4Notes.Location = new Point(579, 21);
+            label4Notes.Location = new Point(68, 25);
             label4Notes.Name = "label4Notes";
             label4Notes.Size = new Size(208, 20);
             label4Notes.TabIndex = 28;
@@ -284,7 +400,7 @@
             // 
             pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
             pictureBox5.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox5.Location = new Point(537, 6);
+            pictureBox5.Location = new Point(22, 25);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(40, 39);
             pictureBox5.TabIndex = 27;
@@ -296,11 +412,11 @@
             dataGridView5Notes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView5Notes.Columns.AddRange(new DataGridViewColumn[] { dateDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn2 });
             dataGridView5Notes.DataSource = noteBindingSource;
-            dataGridView5Notes.Location = new Point(541, 51);
+            dataGridView5Notes.Location = new Point(68, 55);
             dataGridView5Notes.Name = "dataGridView5Notes";
             dataGridView5Notes.RowHeadersWidth = 51;
             dataGridView5Notes.RowTemplate.Height = 29;
-            dataGridView5Notes.Size = new Size(342, 135);
+            dataGridView5Notes.Size = new Size(405, 131);
             dataGridView5Notes.TabIndex = 26;
             dataGridView5Notes.CellContentClick += dataGridView5_CellContentClick;
             // 
@@ -318,20 +434,7 @@
             noteDataGridViewTextBoxColumn2.HeaderText = "note";
             noteDataGridViewTextBoxColumn2.MinimumWidth = 6;
             noteDataGridViewTextBoxColumn2.Name = "noteDataGridViewTextBoxColumn2";
-            noteDataGridViewTextBoxColumn2.Width = 175;
-            // 
-            // noteBindingSource
-            // 
-            noteBindingSource.DataSource = typeof(Model.Note);
-            // 
-            // label4FileNameArbetarMed
-            // 
-            label4FileNameArbetarMed.BorderStyle = BorderStyle.Fixed3D;
-            label4FileNameArbetarMed.Location = new Point(114, 37);
-            label4FileNameArbetarMed.Name = "label4FileNameArbetarMed";
-            label4FileNameArbetarMed.Size = new Size(403, 25);
-            label4FileNameArbetarMed.TabIndex = 25;
-            label4FileNameArbetarMed.Text = "Arbetar med filen: (välj fil)";
+            noteDataGridViewTextBoxColumn2.Width = 400;
             // 
             // label7NotOkSchema
             // 
@@ -578,10 +681,6 @@
             sharedDataGridViewTextBoxColumn1.Name = "sharedDataGridViewTextBoxColumn1";
             sharedDataGridViewTextBoxColumn1.Width = 125;
             // 
-            // schedItemBindingSource1
-            // 
-            schedItemBindingSource1.DataSource = typeof(SchedItem);
-            // 
             // label6OkSchema
             // 
             label6OkSchema.AutoSize = true;
@@ -708,37 +807,23 @@
             sharedDataGridViewTextBoxColumn.Name = "sharedDataGridViewTextBoxColumn";
             sharedDataGridViewTextBoxColumn.Width = 125;
             // 
-            // schedItemBindingSource3
-            // 
-            schedItemBindingSource3.DataSource = typeof(SchedItem);
-            // 
             // label5NotOkPersonal
             // 
             label5NotOkPersonal.AutoSize = true;
             label5NotOkPersonal.Location = new Point(582, 511);
             label5NotOkPersonal.Name = "label5NotOkPersonal";
-            label5NotOkPersonal.Size = new Size(263, 20);
+            label5NotOkPersonal.Size = new Size(266, 20);
             label5NotOkPersonal.TabIndex = 17;
-            label5NotOkPersonal.Text = "Personal som inte hittades i databasen";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(8, 84);
-            button1.Name = "button1";
-            button1.Size = new Size(109, 78);
-            button1.TabIndex = 1;
-            button1.Text = "Personalens Lista";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_visaPersonalLista;
+            label5NotOkPersonal.Text = "Personal som inte hittades i databasen:";
             // 
             // label4OkPersonal
             // 
             label4OkPersonal.AutoSize = true;
             label4OkPersonal.Location = new Point(582, 211);
             label4OkPersonal.Name = "label4OkPersonal";
-            label4OkPersonal.Size = new Size(291, 20);
+            label4OkPersonal.Size = new Size(294, 20);
             label4OkPersonal.TabIndex = 16;
-            label4OkPersonal.Text = "Personal som kommer finnas i färdiga filen";
+            label4OkPersonal.Text = "Personal som kommer finnas i färdiga filen:";
             // 
             // dataGridView2
             // 
@@ -777,10 +862,6 @@
             aleIdDataGridViewTextBoxColumn1.Name = "aleIdDataGridViewTextBoxColumn1";
             aleIdDataGridViewTextBoxColumn1.Width = 125;
             // 
-            // personnelBindingSource1
-            // 
-            personnelBindingSource1.DataSource = typeof(Model.Personnel);
-            // 
             // dataGridView1
             // 
             dataGridView1.AutoGenerateColumns = false;
@@ -818,113 +899,50 @@
             aleIdDataGridViewTextBoxColumn.Name = "aleIdDataGridViewTextBoxColumn";
             aleIdDataGridViewTextBoxColumn.Width = 125;
             // 
-            // personnelBindingSource
+            // tabPage1
             // 
-            personnelBindingSource.DataSource = typeof(Model.Personnel);
+            tabPage1.BackColor = Color.DarkGreen;
+            tabPage1.Controls.Add(pictureBox2);
+            tabPage1.Controls.Add(button3);
+            tabPage1.Location = new Point(4, 29);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1196, 729);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Förbered resultat genom att välja fil som du sparade på Multi Access";
             // 
-            // tabPage3
+            // pictureBox2
             // 
-            tabPage3.Controls.Add(createdFileDateTimeDetailTextbox);
-            tabPage3.Controls.Add(resultSmallDetailsTextbox);
-            tabPage3.Controls.Add(resultMessageTextbox);
-            tabPage3.Location = new Point(4, 29);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1196, 729);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Färdig resultat";
-            tabPage3.UseVisualStyleBackColor = true;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.InitialImage = (Image)resources.GetObject("pictureBox2.InitialImage");
+            pictureBox2.Location = new Point(260, 274);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(167, 172);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 1;
+            pictureBox2.TabStop = false;
             // 
-            // createdFileDateTimeDetailTextbox
+            // button3
             // 
-            createdFileDateTimeDetailTextbox.AutoSize = true;
-            createdFileDateTimeDetailTextbox.Location = new Point(104, 373);
-            createdFileDateTimeDetailTextbox.Name = "createdFileDateTimeDetailTextbox";
-            createdFileDateTimeDetailTextbox.Size = new Size(256, 20);
-            createdFileDateTimeDetailTextbox.TabIndex = 2;
-            createdFileDateTimeDetailTextbox.Text = "Datum och tid för din nya fil visas här";
+            button3.Location = new Point(149, 204);
+            button3.Name = "button3";
+            button3.Size = new Size(567, 64);
+            button3.TabIndex = 0;
+            button3.Text = "Välj din fil som du har sparat (exporterat) i Multi Access som har 'tjänstgöringslista'";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click_valjFil;
             // 
-            // resultSmallDetailsTextbox
+            // tabControl1
             // 
-            resultSmallDetailsTextbox.AutoSize = true;
-            resultSmallDetailsTextbox.Location = new Point(102, 403);
-            resultSmallDetailsTextbox.Name = "resultSmallDetailsTextbox";
-            resultSmallDetailsTextbox.Size = new Size(177, 20);
-            resultSmallDetailsTextbox.TabIndex = 1;
-            resultSmallDetailsTextbox.Text = "Mer information visas här";
-            // 
-            // resultMessageTextbox
-            // 
-            resultMessageTextbox.AutoSize = true;
-            resultMessageTextbox.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            resultMessageTextbox.Location = new Point(176, 194);
-            resultMessageTextbox.Name = "resultMessageTextbox";
-            resultMessageTextbox.Size = new Size(451, 35);
-            resultMessageTextbox.TabIndex = 0;
-            resultMessageTextbox.Text = "Resultat meddelande kommer visas här";
-            // 
-            // schedItemBindingSource
-            // 
-            schedItemBindingSource.DataSource = typeof(SchedItem);
-            schedItemBindingSource.CurrentChanged += schedItemBindingSource_CurrentChanged;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(1154, 10);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(51, 63);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
-            // statusStrip1
-            // 
-            statusStrip1.ImageScalingSize = new Size(20, 20);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1 });
-            statusStrip1.Location = new Point(0, 817);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1228, 26);
-            statusStrip1.TabIndex = 3;
-            statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(44, 20);
-            toolStripStatusLabel1.Text = "Redo";
-            // 
-            // toolStripProgressBar1
-            // 
-            toolStripProgressBar1.Name = "toolStripProgressBar1";
-            toolStripProgressBar1.Size = new Size(300, 18);
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(523, 16);
-            label1.Name = "label1";
-            label1.Size = new Size(564, 20);
-            label1.TabIndex = 4;
-            label1.Text = "Övergripande Bemanning - Bro Mellan Multi Access och Microsoft Shifts/Arbetspass";
-            // 
-            // button2
-            // 
-            button2.Location = new Point(1098, 12);
-            button2.Name = "button2";
-            button2.Size = new Size(47, 29);
-            button2.TabIndex = 5;
-            button2.Text = "Om";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // folderBrowserDialog1
-            // 
-            folderBrowserDialog1.HelpRequest += folderBrowserDialog1_HelpRequest;
-            // 
-            // schedItemBindingSource2
-            // 
-            schedItemBindingSource2.DataSource = typeof(SchedItem);
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Location = new Point(12, 52);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(1204, 762);
+            tabControl1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -932,109 +950,100 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1228, 843);
             Controls.Add(button2);
-            Controls.Add(label1);
+            Controls.Add(pictureBox8);
             Controls.Add(statusStrip1);
             Controls.Add(pictureBox1);
             Controls.Add(tabControl1);
+            Controls.Add(button1);
+            Controls.Add(label4FileNameArbetarMed);
             Name = "Form1";
             Text = "Övergripande Bemanning - Bro";
-            tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView5Notes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)noteBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)noteBindingSource).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).EndInit();
-            tabPage3.ResumeLayout(false);
-            tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource2).EndInit();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5UnclearNotes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView5Notes).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            tabControl1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
-        private TabPage tabPage3;
         private Button button1;
         private PictureBox pictureBox1;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
-        private Label label1;
         private Button button2;
-        private Button button3;
-        private MonthCalendar monthCalendar1;
-        private DataGridView dataGridView1;
-        private Label label2;
-        private Label label3;
-        private TextBox folderLocationTextBox;
-        private TextBox fileLocationTextBox;
-        private ComboBox languageComboBox;
-        private Button button4;
-        private PictureBox pictureBox2;
         private BindingSource personnelBindingSource;
-        private Label label5NotOkPersonal;
-        private Label label4OkPersonal;
-        private DataGridView dataGridView2;
         private BindingSource personnelBindingSource1;
-        private DataGridView dataGridView3;
         private DataGridViewTextBoxColumn groupNameDataGridViewTextBoxColumn;
         private BindingSource schedItemBindingSource;
-        private Label label6OkSchema;
-        private Label resultMessageTextbox;
-        private Label resultSmallDetailsTextbox;
-        private Label createdFileDateTimeDetailTextbox;
-        private DataGridView dataGridView4;
         private DataGridViewTextBoxColumn groupNameDataGridViewTextBoxColumn1;
         private BindingSource schedItemBindingSource1;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox4;
-        private Label label7NotOkSchema;
-        private Panel panel1;
-        private Label calendarLabelBox;
         private ToolStripProgressBar toolStripProgressBar1;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn aleIdDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn aleIdDataGridViewTextBoxColumn;
         private FolderBrowserDialog folderBrowserDialog1;
         private Label label4FileNameArbetarMed;
         private BindingSource schedItemBindingSource3;
         private BindingSource schedItemBindingSource2;
-        private DataGridView dataGridView5Notes;
         private BindingSource noteBindingSource;
-        private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn2;
-        private Label label4Notes;
-        private PictureBox pictureBox5;
+        private PictureBox pictureBox8;
+        private BindingSource noteBindingSource1;
+        private TabPage tabPage3;
+        private Label createdFileDateTimeDetailTextbox;
+        private Label resultSmallDetailsTextbox;
+        private Label resultMessageTextbox;
+        private TabPage tabPage2;
+        private CheckBox checkBox1;
+        private DataGridView dataGridView5UnclearNotes;
+        private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn3;
         private PictureBox pictureBox7;
         private PictureBox pictureBox6;
+        private Label label4Notes;
+        private PictureBox pictureBox5;
+        private DataGridView dataGridView5Notes;
+        private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn2;
+        private Label label7NotOkSchema;
+        private Panel panel1;
         private Label label4;
+        private Label calendarLabelBox;
+        private MonthCalendar monthCalendar1;
+        private ComboBox languageComboBox;
+        private Label label3;
+        private TextBox folderLocationTextBox;
+        private Label label2;
+        private Button button4;
+        private TextBox fileLocationTextBox;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
+        private DataGridView dataGridView4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn3;
@@ -1048,6 +1057,8 @@
         private DataGridViewTextBoxColumn offDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn sharedDataGridViewTextBoxColumn1;
+        private Label label6OkSchema;
+        private DataGridView dataGridView3;
         private DataGridViewTextBoxColumn activity;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn2;
@@ -1061,8 +1072,19 @@
         private DataGridViewTextBoxColumn offDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn sharedDataGridViewTextBoxColumn;
-        private PictureBox pictureBox8;
-        private PictureBox pictureBox9;
-        private Button button5;
+        private Label label5NotOkPersonal;
+        private Label label4OkPersonal;
+        private DataGridView dataGridView2;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn aleIdDataGridViewTextBoxColumn1;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn aleIdDataGridViewTextBoxColumn;
+        private TabPage tabPage1;
+        private PictureBox pictureBox2;
+        private Button button3;
+        private TabControl tabControl1;
     }
 }
