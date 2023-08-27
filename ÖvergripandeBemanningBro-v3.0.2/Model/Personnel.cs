@@ -14,7 +14,10 @@ namespace ÖvergripandeBemanningBro_v3._0._2.Model
         public int id { get; set; }
 
         public string? FirstName { get; set; }
+
+        public string? AlternativeFirstName1 { get; set; }
         public string? LastName { get; set; }
+        public string? AlternativeLastName1 { get; set; }
         public string? Email { get; set; }
         public string? AleId { get; set; }
         public string? Phone { get; set; }
@@ -37,7 +40,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2.Model
             {
                 try
                 {
-                    Personnel result = context.Personnels.SingleOrDefault(p => (p.FirstName == possibleFirstName && p.LastName == possibleLastName));
+                    Personnel result = context.Personnels.SingleOrDefault(p => ((p.FirstName == possibleFirstName || p.AlternativeFirstName1 == possibleFirstName) && (p.LastName == possibleLastName || p.AlternativeLastName1 == possibleLastName)));
                     if (result?.AleId != null)
                     {
                         return result.AleId;

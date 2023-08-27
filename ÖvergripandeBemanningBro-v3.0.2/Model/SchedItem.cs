@@ -361,7 +361,8 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 note = "";
             }
 
-            if (returnListOfActivityEnheter().Contains(activity) || isThisActivityAVariationOfAKnownActivityEnhet(activity) ||) {
+            //CAN: can add more conditions for example various signatures meaning some activity if the activty itself is absent or set to " " or * etc
+            if (returnListOfActivityEnheter().Contains(activity) || isThisActivityAVariationOfAKnownActivityEnhet(activity)) {
                 //this sched line/item can be added to the file
                 return true;
             }

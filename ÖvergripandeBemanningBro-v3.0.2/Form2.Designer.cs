@@ -33,11 +33,14 @@
             dataGridView1 = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             firstNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            AlternativeFirstName1 = new DataGridViewTextBoxColumn();
             lastNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            AlternativeLastName1 = new DataGridViewTextBoxColumn();
             emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             aleIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             phoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             lastUpdatedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            personnelBindingSource1 = new BindingSource(components);
             personnelBindingSource = new BindingSource(components);
             button1_loadPersonnelList = new Button();
             button_insert = new Button();
@@ -52,18 +55,23 @@
             label7 = new Label();
             textBox0id = new TextBox();
             textBox1FN = new TextBox();
-            textBox2LN = new TextBox();
-            textBox3Email = new TextBox();
-            textBox4AleId = new TextBox();
-            textBox5Phone = new TextBox();
-            textBox6LastUpdated = new TextBox();
+            textBox3LN = new TextBox();
+            textBox5Email = new TextBox();
+            textBox6AleId = new TextBox();
+            textBox7Phone = new TextBox();
+            textBox8LastUpdated = new TextBox();
             statusStrip1 = new StatusStrip();
             statusStrip2 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             label8 = new Label();
             label9 = new Label();
             pictureBox1 = new PictureBox();
+            textBox2AFN1 = new TextBox();
+            label10 = new Label();
+            label11 = new Label();
+            textBox4ALN1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).BeginInit();
             statusStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -73,13 +81,13 @@
             // 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, firstNameDataGridViewTextBoxColumn, lastNameDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, aleIdDataGridViewTextBoxColumn, phoneDataGridViewTextBoxColumn, lastUpdatedDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = personnelBindingSource;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, firstNameDataGridViewTextBoxColumn, AlternativeFirstName1, lastNameDataGridViewTextBoxColumn, AlternativeLastName1, emailDataGridViewTextBoxColumn, aleIdDataGridViewTextBoxColumn, phoneDataGridViewTextBoxColumn, lastUpdatedDataGridViewTextBoxColumn });
+            dataGridView1.DataSource = personnelBindingSource1;
             dataGridView1.Location = new Point(242, 182);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(938, 373);
+            dataGridView1.Size = new Size(1190, 373);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellContentClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
@@ -100,6 +108,14 @@
             firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
             firstNameDataGridViewTextBoxColumn.Width = 125;
             // 
+            // AlternativeFirstName1
+            // 
+            AlternativeFirstName1.DataPropertyName = "AlternativeFirstName1";
+            AlternativeFirstName1.HeaderText = "Alternativ Förnamn";
+            AlternativeFirstName1.MinimumWidth = 6;
+            AlternativeFirstName1.Name = "AlternativeFirstName1";
+            AlternativeFirstName1.Width = 125;
+            // 
             // lastNameDataGridViewTextBoxColumn
             // 
             lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
@@ -107,6 +123,14 @@
             lastNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
             lastNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // AlternativeLastName1
+            // 
+            AlternativeLastName1.DataPropertyName = "AlternativeLastName1";
+            AlternativeLastName1.HeaderText = "Alternativ Efternamn";
+            AlternativeLastName1.MinimumWidth = 6;
+            AlternativeLastName1.Name = "AlternativeLastName1";
+            AlternativeLastName1.Width = 125;
             // 
             // emailDataGridViewTextBoxColumn
             // 
@@ -139,6 +163,10 @@
             lastUpdatedDataGridViewTextBoxColumn.MinimumWidth = 6;
             lastUpdatedDataGridViewTextBoxColumn.Name = "lastUpdatedDataGridViewTextBoxColumn";
             lastUpdatedDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // personnelBindingSource1
+            // 
+            personnelBindingSource1.DataSource = typeof(Model.Personnel);
             // 
             // personnelBindingSource
             // 
@@ -198,7 +226,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(41, 99);
+            label2.Location = new Point(41, 84);
             label2.Name = "label2";
             label2.Size = new Size(67, 20);
             label2.TabIndex = 6;
@@ -207,7 +235,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(41, 164);
+            label3.Location = new Point(41, 186);
             label3.Name = "label3";
             label3.Size = new Size(77, 20);
             label3.TabIndex = 7;
@@ -216,7 +244,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(41, 229);
+            label4.Location = new Point(41, 288);
             label4.Name = "label4";
             label4.Size = new Size(38, 20);
             label4.TabIndex = 8;
@@ -225,7 +253,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(41, 295);
+            label5.Location = new Point(41, 341);
             label5.Name = "label5";
             label5.Size = new Size(147, 20);
             label5.TabIndex = 9;
@@ -234,7 +262,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(41, 357);
+            label6.Location = new Point(41, 393);
             label6.Name = "label6";
             label6.Size = new Size(113, 20);
             label6.TabIndex = 10;
@@ -243,7 +271,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(41, 425);
+            label7.Location = new Point(41, 443);
             label7.Name = "label7";
             label7.Size = new Size(134, 20);
             label7.TabIndex = 11;
@@ -258,52 +286,52 @@
             // 
             // textBox1FN
             // 
-            textBox1FN.Location = new Point(37, 118);
+            textBox1FN.Location = new Point(37, 103);
             textBox1FN.Name = "textBox1FN";
             textBox1FN.Size = new Size(173, 27);
             textBox1FN.TabIndex = 13;
             // 
-            // textBox2LN
+            // textBox3LN
             // 
-            textBox2LN.Location = new Point(37, 187);
-            textBox2LN.Name = "textBox2LN";
-            textBox2LN.Size = new Size(173, 27);
-            textBox2LN.TabIndex = 14;
+            textBox3LN.Location = new Point(37, 208);
+            textBox3LN.Name = "textBox3LN";
+            textBox3LN.Size = new Size(173, 27);
+            textBox3LN.TabIndex = 14;
             // 
-            // textBox3Email
+            // textBox5Email
             // 
-            textBox3Email.Location = new Point(37, 252);
-            textBox3Email.Name = "textBox3Email";
-            textBox3Email.Size = new Size(173, 27);
-            textBox3Email.TabIndex = 15;
+            textBox5Email.Location = new Point(37, 311);
+            textBox5Email.Name = "textBox5Email";
+            textBox5Email.Size = new Size(173, 27);
+            textBox5Email.TabIndex = 15;
             // 
-            // textBox4AleId
+            // textBox6AleId
             // 
-            textBox4AleId.Location = new Point(37, 318);
-            textBox4AleId.Name = "textBox4AleId";
-            textBox4AleId.Size = new Size(172, 27);
-            textBox4AleId.TabIndex = 16;
+            textBox6AleId.Location = new Point(37, 364);
+            textBox6AleId.Name = "textBox6AleId";
+            textBox6AleId.Size = new Size(172, 27);
+            textBox6AleId.TabIndex = 16;
             // 
-            // textBox5Phone
+            // textBox7Phone
             // 
-            textBox5Phone.Location = new Point(36, 380);
-            textBox5Phone.Name = "textBox5Phone";
-            textBox5Phone.Size = new Size(174, 27);
-            textBox5Phone.TabIndex = 17;
+            textBox7Phone.Location = new Point(36, 416);
+            textBox7Phone.Name = "textBox7Phone";
+            textBox7Phone.Size = new Size(174, 27);
+            textBox7Phone.TabIndex = 17;
             // 
-            // textBox6LastUpdated
+            // textBox8LastUpdated
             // 
-            textBox6LastUpdated.Location = new Point(37, 448);
-            textBox6LastUpdated.Name = "textBox6LastUpdated";
-            textBox6LastUpdated.Size = new Size(173, 27);
-            textBox6LastUpdated.TabIndex = 18;
+            textBox8LastUpdated.Location = new Point(37, 466);
+            textBox8LastUpdated.Name = "textBox8LastUpdated";
+            textBox8LastUpdated.Size = new Size(173, 27);
+            textBox8LastUpdated.TabIndex = 18;
             // 
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Location = new Point(0, 602);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1208, 22);
+            statusStrip1.Size = new Size(1444, 22);
             statusStrip1.TabIndex = 19;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -313,7 +341,7 @@
             statusStrip2.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
             statusStrip2.Location = new Point(0, 576);
             statusStrip2.Name = "statusStrip2";
-            statusStrip2.Size = new Size(1208, 26);
+            statusStrip2.Size = new Size(1444, 26);
             statusStrip2.TabIndex = 20;
             statusStrip2.Text = "statusStrip2";
             // 
@@ -351,21 +379,57 @@
             pictureBox1.TabIndex = 23;
             pictureBox1.TabStop = false;
             // 
+            // textBox2AFN1
+            // 
+            textBox2AFN1.Location = new Point(39, 155);
+            textBox2AFN1.Name = "textBox2AFN1";
+            textBox2AFN1.Size = new Size(172, 27);
+            textBox2AFN1.TabIndex = 24;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(36, 132);
+            label10.Name = "label10";
+            label10.Size = new Size(133, 20);
+            label10.TabIndex = 25;
+            label10.Text = "Alternativ förnamn";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(41, 238);
+            label11.Name = "label11";
+            label11.Size = new Size(145, 20);
+            label11.TabIndex = 26;
+            label11.Text = "Alternativ efternamn";
+            // 
+            // textBox4ALN1
+            // 
+            textBox4ALN1.Location = new Point(37, 261);
+            textBox4ALN1.Name = "textBox4ALN1";
+            textBox4ALN1.Size = new Size(176, 27);
+            textBox4ALN1.TabIndex = 27;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1208, 624);
+            ClientSize = new Size(1444, 624);
+            Controls.Add(textBox4ALN1);
+            Controls.Add(label11);
+            Controls.Add(label10);
+            Controls.Add(textBox2AFN1);
             Controls.Add(pictureBox1);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(statusStrip2);
             Controls.Add(statusStrip1);
-            Controls.Add(textBox6LastUpdated);
-            Controls.Add(textBox5Phone);
-            Controls.Add(textBox4AleId);
-            Controls.Add(textBox3Email);
-            Controls.Add(textBox2LN);
+            Controls.Add(textBox8LastUpdated);
+            Controls.Add(textBox7Phone);
+            Controls.Add(textBox6AleId);
+            Controls.Add(textBox5Email);
+            Controls.Add(textBox3LN);
             Controls.Add(textBox1FN);
             Controls.Add(textBox0id);
             Controls.Add(label7);
@@ -384,6 +448,7 @@
             Text = "Form2";
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)personnelBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)personnelBindingSource).EndInit();
             statusStrip2.ResumeLayout(false);
             statusStrip2.PerformLayout();
@@ -409,11 +474,11 @@
         private Label label7;
         private TextBox textBox0id;
         private TextBox textBox1FN;
-        private TextBox textBox2LN;
-        private TextBox textBox3Email;
-        private TextBox textBox4AleId;
-        private TextBox textBox5Phone;
-        private TextBox textBox6LastUpdated;
+        private TextBox textBox3LN;
+        private TextBox textBox5Email;
+        private TextBox textBox6AleId;
+        private TextBox textBox7Phone;
+        private TextBox textBox8LastUpdated;
         private StatusStrip statusStrip1;
         private StatusStrip statusStrip2;
         private ToolStripStatusLabel toolStripStatusLabel1;
@@ -422,10 +487,17 @@
         private PictureBox pictureBox1;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn AlternativeFirstName1;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn AlternativeLastName1;
         private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn aleIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn lastUpdatedDataGridViewTextBoxColumn;
+        private BindingSource personnelBindingSource1;
+        private TextBox textBox2AFN1;
+        private Label label10;
+        private Label label11;
+        private TextBox textBox4ALN1;
     }
 }

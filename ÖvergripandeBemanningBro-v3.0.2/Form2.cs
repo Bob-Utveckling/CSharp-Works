@@ -25,7 +25,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 //err:value cannot be null. dataGridView1.Sort(this.dataGridView1.Columns["firstName"], ListSortDirection.Ascending);
                 toolStripStatusLabel1.Text = "Redo";
             };
-    }
+        }
 
 
 
@@ -86,11 +86,13 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             DataGridViewRow newDataRow = dataGridView1.Rows[selectedRow];
             newDataRow.Cells[0].Value = textBox0id.Text;
             newDataRow.Cells[1].Value = textBox1FN.Text;
-            newDataRow.Cells[2].Value = textBox2LN.Text;
-            newDataRow.Cells[3].Value = textBox3Email.Text;
-            newDataRow.Cells[4].Value = textBox4AleId.Text;
-            newDataRow.Cells[5].Value = textBox5Phone.Text;
-            newDataRow.Cells[6].Value = textBox6LastUpdated.Text;
+            newDataRow.Cells[2].Value = textBox2AFN1.Text;
+            newDataRow.Cells[3].Value = textBox3LN.Text;
+            newDataRow.Cells[4].Value = textBox4ALN1.Text;
+            newDataRow.Cells[5].Value = textBox5Email.Text;
+            newDataRow.Cells[6].Value = textBox6AleId.Text;
+            newDataRow.Cells[7].Value = textBox7Phone.Text;
+            newDataRow.Cells[8].Value = textBox8LastUpdated.Text;
             using (var context = new PersonnelContext())
             {
                 var result = context.Personnels.SingleOrDefault(p => p.id.ToString() == newDataRow.Cells[0].Value.ToString());
@@ -98,10 +100,12 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 {
 
                     result.FirstName = newDataRow.Cells[1].Value.ToString() == null ? "" : newDataRow.Cells[1].Value.ToString();
-                    result.LastName = newDataRow.Cells[2].Value.ToString() == null ? "" : newDataRow.Cells[2].Value.ToString();
-                    result.Email = newDataRow.Cells[3].Value.ToString() == null ? "" : newDataRow.Cells[3].Value.ToString();
-                    result.AleId = newDataRow.Cells[4].Value.ToString() == null ? "" : newDataRow.Cells[4].Value.ToString();
-                    result.Phone = newDataRow.Cells[5].Value.ToString() == null ? "" : newDataRow.Cells[5].Value.ToString();
+                    result.AlternativeFirstName1 = newDataRow.Cells[2].Value.ToString() == null ? "" : newDataRow.Cells[2].Value.ToString();
+                    result.LastName = newDataRow.Cells[3].Value.ToString() == null ? "" : newDataRow.Cells[3].Value.ToString();
+                    result.AlternativeLastName1 = newDataRow.Cells[4].Value.ToString() == null ? "" : newDataRow.Cells[4].Value.ToString();
+                    result.Email = newDataRow.Cells[5].Value.ToString() == null ? "" : newDataRow.Cells[5].Value.ToString();
+                    result.AleId = newDataRow.Cells[6].Value.ToString() == null ? "" : newDataRow.Cells[6].Value.ToString();
+                    result.Phone = newDataRow.Cells[7].Value.ToString() == null ? "" : newDataRow.Cells[7].Value.ToString();
                     //except that if empty it won't work: result.LastUpdated = DateTime.Parse(newDataRow.Cells[6].Value.ToString() == null ? "" : newDataRow.Cells[6].Value.ToString());
                     result.LastUpdated = DateTime.Now;
                     MessageBox.Show("Uppdaterade databaspost med id: " + result.id);
@@ -126,13 +130,16 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
                 textBox0id.Text = row.Cells[0].Value == null ? "" : row.Cells[0].Value.ToString();
                 textBox1FN.Text = row.Cells[1].Value == null ? "" : row.Cells[1].Value.ToString();
-                textBox2LN.Text = row.Cells[2].Value == null ? "" : row.Cells[2].Value.ToString();
-                textBox3Email.Text = row.Cells[3].Value == null ? "" : row.Cells[3].Value.ToString();
-                textBox4AleId.Text = row.Cells[4].Value == null ? "" : row.Cells[4].Value.ToString();
-                textBox5Phone.Text = row.Cells[5].Value == null ? "" : row.Cells[5].Value.ToString();
-                textBox6LastUpdated.Text = row.Cells[6].Value == null ? "" : row.Cells[6].Value.ToString();
+                textBox2AFN1.Text = row.Cells[2].Value == null ? "" : row.Cells[2].Value.ToString();
+                textBox3LN.Text = row.Cells[3].Value == null ? "" : row.Cells[3].Value.ToString();
+                textBox4ALN1.Text = row.Cells[4].Value == null ? "" : row.Cells[4].Value.ToString();
+                textBox5Email.Text = row.Cells[5].Value == null ? "" : row.Cells[5].Value.ToString();
+                textBox6AleId.Text = row.Cells[6].Value == null ? "" : row.Cells[6].Value.ToString();
+                textBox7Phone.Text = row.Cells[7].Value == null ? "" : row.Cells[7].Value.ToString();
+                textBox8LastUpdated.Text = row.Cells[8].Value == null ? "" : row.Cells[8].Value.ToString();
                 toolStripStatusLabel1.Text = "Uppdatera databaspost med id " + row.Cells[0].Value.ToString();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
