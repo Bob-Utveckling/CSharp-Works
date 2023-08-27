@@ -61,6 +61,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             this.shared = "1. Delat";
         }
 
+        //used for recognizing and making tomorrow's date for these types of activities
         public static List<string> returnListOfNightShiftTypes()
         {
             List<string> listOfNightShiftTypes = new List<string>();
@@ -82,6 +83,13 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             return listOfEnheter;
         }
 
+        public static Dictionary<string, HashSet<string>> returnVariousFormsOfActivityEnheter()
+        {
+            Dictionary<string, HashSet<string>> variousFormsOfActivityEnheter = new Dictionary<string, HashSet<string>>();
+            variousFormsOfActivityEnheter.Add("Resurser",
+                                new HashSet<string> { "Bokat resurspass", "Resurspass Bemanning" });
+            return variousFormsOfActivityEnheter;
+        }
         public static List<string> returnListOfOkSignatures()
         {
             List<string> listOfOkSignatures = new List<string>();
@@ -291,6 +299,8 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             return (firstName + " " + lastName +
                 ": " + from + "-" + to + ", " + signature + ", " + activity) ;
         }
+        
+        //not used
         public static bool isThePossibleSchedLineANightShift(List<string> listOfNightShiftTypes, string possibleSchedItemString)
         {
             string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
@@ -304,7 +314,23 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         }
 
-        //a filter-like function to checked details we must have before considering the sched item ok to be added to our new outcoming file
+        public static string getTheActivityEnhetNameThatWeHaveInTeamsForThisVariation(string activity)
+        {
+            string? containKey = returnVariousFormsOfActivityEnheter().Keys
+                                             .Where(key => returnVariousFormsOfActivityEnheter()[key].Contains(activity))
+                                             .FirstOrDefault();
+            return containKey;
+        }
+
+        public static bool isThisActivityAVariationOfAKnownActivityEnhet(string activity)
+        {
+            //something wrong: Dictionary<string,HashSet<string>> result = returnVariousFormsOfActivityEnheter().Where(x => returnVariousFormsOfActivityEnheter().Values.Any(d => d.Contains(activity))).ToList();
+            bool isInDict = returnVariousFormsOfActivityEnheter().Values
+                                            .SelectMany(lst=> lst)
+                                            .Any(variation => variation==activity);
+            return isInDict;
+        }
+        //a filter-like function to checked details we must have before considering the sched item ok to be added to our new outcoming file        
         public static bool isThePossibleSchedLineForAnActivityEnhetThatWeWant(string possibleSchedItemString)
         {
             string firstName = possibleSchedItemString.Split(';')[0].Replace("\"", "").Trim();
@@ -335,7 +361,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                 note = "";
             }
 
-            if (returnListOfActivityEnheter().Contains(activity)) {
+            if (returnListOfActivityEnheter().Contains(activity) || isThisActivityAVariationOfAKnownActivityEnhet(activity) ||) {
                 //this sched line/item can be added to the file
                 return true;
             }
@@ -350,6 +376,13 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             string from = possibleSchedItemString.Split(';')[3].Replace("\"", "").Trim() ;
             string to = possibleSchedItemString.Split(';')[4].Replace("\"", "").Trim();
             string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
+
+            bool activityVariationFound = false;
+            if (isThisActivityAVariationOfAKnownActivityEnhet(activity))
+            {
+                activity = getTheActivityEnhetNameThatWeHaveInTeamsForThisVariation(activity);
+                activityVariationFound = true;
+            }
             string off = possibleSchedItemString.Split(';')[6].Replace("\"", "").Trim();
             string shiftHours = possibleSchedItemString.Split(';')[7].Replace("\"", "").Trim();
             //below for the cases like encountering this line: " 13:00";" 16:00";" APT";" 0";" 03:00";" ";" ";""
@@ -365,7 +398,11 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             try
             {
                 note = possibleSchedItemString.Split(';')[9].Replace("\"", "").Trim();
-            } catch (IndexOutOfRangeException iore)
+                if (activityVariationFound) {
+                    //MessageBox.Show("this activity is variation. activity:" + activity + ", note: " + note + ", signature:" + signature);
+                    note = signature + " " + note; }
+            }
+            catch (IndexOutOfRangeException iore)
             {
                 note = "";
             }
