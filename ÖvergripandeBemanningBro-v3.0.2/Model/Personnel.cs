@@ -35,24 +35,28 @@ namespace ÖvergripandeBemanningBro_v3._0._2.Model
 
         public static string getMemberAleIdIfInDatabase(string possibleFirstName, string possibleLastName)
         {
-            //MessageBox.Show("get Personnel AleId for: first:" + possibleFirstName + ", last:" + possibleLastName);
-            using (var context = new PersonnelContext())
+            if (possibleFirstName != "" & possibleLastName != "") //this was needed after the error popping up close to the end of the project
             {
-                try
+                //MessageBox.Show("get Personnel AleId for: first:" + possibleFirstName + ", last:" + possibleLastName);
+                using (var context = new PersonnelContext())
                 {
-                    Personnel result = context.Personnels.SingleOrDefault(p => ((p.FirstName == possibleFirstName || p.AlternativeFirstName1 == possibleFirstName) && (p.LastName == possibleLastName || p.AlternativeLastName1 == possibleLastName)));
-                    if (result?.AleId != null)
+                    try
                     {
-                        return result.AleId;
+                        Personnel result = context.Personnels.SingleOrDefault(p => ((p.FirstName == possibleFirstName || p.AlternativeFirstName1 == possibleFirstName) && (p.LastName == possibleLastName || p.AlternativeLastName1 == possibleLastName)));
+                        if (result?.AleId != null)
+                        {
+                            return result.AleId;
+                        }
+                        else
+                        {
+                            return "NA";
+                        }
+                        //return "bamlot001@ale.se";
                     }
-                    else
-                    {
-                        return "NA";
-                    }
-                    //return "bamlot001@ale.se";
-                } catch (Exception ex) { MessageBox.Show("BL2 " + ex); }
-            }
-            return "NA";
+                    catch (Exception ex) { MessageBox.Show("BL2 error for possibleFirstName: " + possibleFirstName + "possibleLastName: " + possibleLastName + "\n" + ex); }
+                }
+                return "NA";
+            } else { return "NA"; }
         }
 
         public static string createTempAleIdFromName(string firstName, string lastName)

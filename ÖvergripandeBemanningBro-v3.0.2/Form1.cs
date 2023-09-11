@@ -154,7 +154,12 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                     "\nSpråk: " + language +
                     "\nAntal ok schema = " + okSchedItems.Count +
                     "\nAntal ej ok schema = " + notOkSchedItems.Count +
-                    "\nAntal okej personal = " + okPersonnelInFile.Count +
+                    "\nAntal anteckningar = " + notes.Count;
+                    if (checkBox1.Checked) { smallDetails += "\nAntal extra anteckningar = " + unclearNotes.Count; } else
+                    {
+                    smallDetails += "\nAntal ej tillsatt extra anteckningar = " + unclearNotes.Count;
+                    }
+                    smallDetails += "\nAntal okej personal = " + okPersonnelInFile.Count +
                     "\nAntal ej okej personal = " + notOkPersonnelInFile.Count +
                     "\n\n";
 

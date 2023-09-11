@@ -53,6 +53,20 @@
             resultMessageTextbox = new Label();
             tabPage2 = new TabPage();
             dataGridView3 = new DataGridView();
+            activityDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            signatureDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            firstNameDataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            lastNameDataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            emailIdDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dateFromDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            timeFromDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dateToDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            timeToDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            themeColorDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            etikettDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            offDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            noteDataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            sharedDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             schedItemBindingSource5 = new BindingSource(components);
             checkBox1 = new CheckBox();
             dataGridView5UnclearNotes = new DataGridView();
@@ -79,6 +93,20 @@
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             dataGridView4 = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            signature = new DataGridViewTextBoxColumn();
+            firstNameDataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            lastNameDataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            emailIdDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dateFromDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            timeFromDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dateToDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            timeToDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            themeColorDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            etikettDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            offDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            noteDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            sharedDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             label6OkSchema = new Label();
             label5NotOkPersonal = new Label();
             label4OkPersonal = new Label();
@@ -95,34 +123,6 @@
             button3 = new Button();
             tabControl1 = new TabControl();
             schedItemBindingSource4 = new BindingSource(components);
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            signature = new DataGridViewTextBoxColumn();
-            firstNameDataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            lastNameDataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            emailIdDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dateFromDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            timeFromDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dateToDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            timeToDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            themeColorDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            etikettDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            offDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            noteDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            sharedDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            activityDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            signatureDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            firstNameDataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            lastNameDataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            emailIdDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dateFromDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            timeFromDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dateToDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            timeToDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            themeColorDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            etikettDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            offDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            noteDataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            sharedDataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)noteBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)noteBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)schedItemBindingSource1).BeginInit();
@@ -279,16 +279,17 @@
             // createdFileDateTimeDetailTextbox
             // 
             createdFileDateTimeDetailTextbox.AutoSize = true;
-            createdFileDateTimeDetailTextbox.Location = new Point(244, 354);
+            createdFileDateTimeDetailTextbox.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            createdFileDateTimeDetailTextbox.Location = new Point(276, 294);
             createdFileDateTimeDetailTextbox.Name = "createdFileDateTimeDetailTextbox";
-            createdFileDateTimeDetailTextbox.Size = new Size(256, 20);
+            createdFileDateTimeDetailTextbox.Size = new Size(394, 31);
             createdFileDateTimeDetailTextbox.TabIndex = 2;
             createdFileDateTimeDetailTextbox.Text = "Datum och tid för din nya fil visas här";
             // 
             // resultSmallDetailsTextbox
             // 
             resultSmallDetailsTextbox.AutoSize = true;
-            resultSmallDetailsTextbox.Location = new Point(242, 384);
+            resultSmallDetailsTextbox.Location = new Point(276, 338);
             resultSmallDetailsTextbox.Name = "resultSmallDetailsTextbox";
             resultSmallDetailsTextbox.Size = new Size(177, 20);
             resultSmallDetailsTextbox.TabIndex = 1;
@@ -297,10 +298,10 @@
             // resultMessageTextbox
             // 
             resultMessageTextbox.AutoSize = true;
-            resultMessageTextbox.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            resultMessageTextbox.Location = new Point(176, 194);
+            resultMessageTextbox.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            resultMessageTextbox.Location = new Point(219, 113);
             resultMessageTextbox.Name = "resultMessageTextbox";
-            resultMessageTextbox.Size = new Size(451, 35);
+            resultMessageTextbox.Size = new Size(502, 38);
             resultMessageTextbox.TabIndex = 0;
             resultMessageTextbox.Text = "Resultat meddelande kommer visas här";
             // 
@@ -345,6 +346,118 @@
             dataGridView3.RowTemplate.Height = 29;
             dataGridView3.Size = new Size(523, 264);
             dataGridView3.TabIndex = 36;
+            // 
+            // activityDataGridViewTextBoxColumn
+            // 
+            activityDataGridViewTextBoxColumn.DataPropertyName = "activity";
+            activityDataGridViewTextBoxColumn.HeaderText = "Activity";
+            activityDataGridViewTextBoxColumn.MinimumWidth = 6;
+            activityDataGridViewTextBoxColumn.Name = "activityDataGridViewTextBoxColumn";
+            activityDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // signatureDataGridViewTextBoxColumn
+            // 
+            signatureDataGridViewTextBoxColumn.DataPropertyName = "signature";
+            signatureDataGridViewTextBoxColumn.HeaderText = "signature";
+            signatureDataGridViewTextBoxColumn.MinimumWidth = 6;
+            signatureDataGridViewTextBoxColumn.Name = "signatureDataGridViewTextBoxColumn";
+            signatureDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // firstNameDataGridViewTextBoxColumn4
+            // 
+            firstNameDataGridViewTextBoxColumn4.DataPropertyName = "firstName";
+            firstNameDataGridViewTextBoxColumn4.HeaderText = "firstName";
+            firstNameDataGridViewTextBoxColumn4.MinimumWidth = 6;
+            firstNameDataGridViewTextBoxColumn4.Name = "firstNameDataGridViewTextBoxColumn4";
+            firstNameDataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // lastNameDataGridViewTextBoxColumn4
+            // 
+            lastNameDataGridViewTextBoxColumn4.DataPropertyName = "lastName";
+            lastNameDataGridViewTextBoxColumn4.HeaderText = "lastName";
+            lastNameDataGridViewTextBoxColumn4.MinimumWidth = 6;
+            lastNameDataGridViewTextBoxColumn4.Name = "lastNameDataGridViewTextBoxColumn4";
+            lastNameDataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // emailIdDataGridViewTextBoxColumn2
+            // 
+            emailIdDataGridViewTextBoxColumn2.DataPropertyName = "emailId";
+            emailIdDataGridViewTextBoxColumn2.HeaderText = "Email ID";
+            emailIdDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            emailIdDataGridViewTextBoxColumn2.Name = "emailIdDataGridViewTextBoxColumn2";
+            emailIdDataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dateFromDataGridViewTextBoxColumn2
+            // 
+            dateFromDataGridViewTextBoxColumn2.DataPropertyName = "dateFrom";
+            dateFromDataGridViewTextBoxColumn2.HeaderText = "Date From";
+            dateFromDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dateFromDataGridViewTextBoxColumn2.Name = "dateFromDataGridViewTextBoxColumn2";
+            dateFromDataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // timeFromDataGridViewTextBoxColumn2
+            // 
+            timeFromDataGridViewTextBoxColumn2.DataPropertyName = "timeFrom";
+            timeFromDataGridViewTextBoxColumn2.HeaderText = "Time From";
+            timeFromDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            timeFromDataGridViewTextBoxColumn2.Name = "timeFromDataGridViewTextBoxColumn2";
+            timeFromDataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dateToDataGridViewTextBoxColumn2
+            // 
+            dateToDataGridViewTextBoxColumn2.DataPropertyName = "dateTo";
+            dateToDataGridViewTextBoxColumn2.HeaderText = "Date To";
+            dateToDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dateToDataGridViewTextBoxColumn2.Name = "dateToDataGridViewTextBoxColumn2";
+            dateToDataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // timeToDataGridViewTextBoxColumn2
+            // 
+            timeToDataGridViewTextBoxColumn2.DataPropertyName = "timeTo";
+            timeToDataGridViewTextBoxColumn2.HeaderText = "Time To";
+            timeToDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            timeToDataGridViewTextBoxColumn2.Name = "timeToDataGridViewTextBoxColumn2";
+            timeToDataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // themeColorDataGridViewTextBoxColumn2
+            // 
+            themeColorDataGridViewTextBoxColumn2.DataPropertyName = "themeColor";
+            themeColorDataGridViewTextBoxColumn2.HeaderText = "Theme Color";
+            themeColorDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            themeColorDataGridViewTextBoxColumn2.Name = "themeColorDataGridViewTextBoxColumn2";
+            themeColorDataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // etikettDataGridViewTextBoxColumn2
+            // 
+            etikettDataGridViewTextBoxColumn2.DataPropertyName = "etikett";
+            etikettDataGridViewTextBoxColumn2.HeaderText = "Etikett";
+            etikettDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            etikettDataGridViewTextBoxColumn2.Name = "etikettDataGridViewTextBoxColumn2";
+            etikettDataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // offDataGridViewTextBoxColumn2
+            // 
+            offDataGridViewTextBoxColumn2.DataPropertyName = "off";
+            offDataGridViewTextBoxColumn2.HeaderText = "Rast (Off)";
+            offDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            offDataGridViewTextBoxColumn2.Name = "offDataGridViewTextBoxColumn2";
+            offDataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // noteDataGridViewTextBoxColumn4
+            // 
+            noteDataGridViewTextBoxColumn4.DataPropertyName = "note";
+            noteDataGridViewTextBoxColumn4.HeaderText = "Notes (Anteckningar)";
+            noteDataGridViewTextBoxColumn4.MinimumWidth = 6;
+            noteDataGridViewTextBoxColumn4.Name = "noteDataGridViewTextBoxColumn4";
+            noteDataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // sharedDataGridViewTextBoxColumn2
+            // 
+            sharedDataGridViewTextBoxColumn2.DataPropertyName = "shared";
+            sharedDataGridViewTextBoxColumn2.HeaderText = "Shared";
+            sharedDataGridViewTextBoxColumn2.MinimumWidth = 6;
+            sharedDataGridViewTextBoxColumn2.Name = "sharedDataGridViewTextBoxColumn2";
+            sharedDataGridViewTextBoxColumn2.Width = 125;
             // 
             // schedItemBindingSource5
             // 
@@ -600,6 +713,118 @@
             dataGridView4.Size = new Size(523, 188);
             dataGridView4.TabIndex = 20;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "activity";
+            dataGridViewTextBoxColumn1.HeaderText = "activity";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // signature
+            // 
+            signature.DataPropertyName = "signature";
+            signature.HeaderText = "signature";
+            signature.MinimumWidth = 6;
+            signature.Name = "signature";
+            signature.Width = 125;
+            // 
+            // firstNameDataGridViewTextBoxColumn3
+            // 
+            firstNameDataGridViewTextBoxColumn3.DataPropertyName = "firstName";
+            firstNameDataGridViewTextBoxColumn3.HeaderText = "firstName";
+            firstNameDataGridViewTextBoxColumn3.MinimumWidth = 6;
+            firstNameDataGridViewTextBoxColumn3.Name = "firstNameDataGridViewTextBoxColumn3";
+            firstNameDataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // lastNameDataGridViewTextBoxColumn3
+            // 
+            lastNameDataGridViewTextBoxColumn3.DataPropertyName = "lastName";
+            lastNameDataGridViewTextBoxColumn3.HeaderText = "lastName";
+            lastNameDataGridViewTextBoxColumn3.MinimumWidth = 6;
+            lastNameDataGridViewTextBoxColumn3.Name = "lastNameDataGridViewTextBoxColumn3";
+            lastNameDataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // emailIdDataGridViewTextBoxColumn1
+            // 
+            emailIdDataGridViewTextBoxColumn1.DataPropertyName = "emailId";
+            emailIdDataGridViewTextBoxColumn1.HeaderText = "Ale ID";
+            emailIdDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            emailIdDataGridViewTextBoxColumn1.Name = "emailIdDataGridViewTextBoxColumn1";
+            emailIdDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dateFromDataGridViewTextBoxColumn1
+            // 
+            dateFromDataGridViewTextBoxColumn1.DataPropertyName = "dateFrom";
+            dateFromDataGridViewTextBoxColumn1.HeaderText = "Date From";
+            dateFromDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dateFromDataGridViewTextBoxColumn1.Name = "dateFromDataGridViewTextBoxColumn1";
+            dateFromDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // timeFromDataGridViewTextBoxColumn1
+            // 
+            timeFromDataGridViewTextBoxColumn1.DataPropertyName = "timeFrom";
+            timeFromDataGridViewTextBoxColumn1.HeaderText = "Time From";
+            timeFromDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            timeFromDataGridViewTextBoxColumn1.Name = "timeFromDataGridViewTextBoxColumn1";
+            timeFromDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dateToDataGridViewTextBoxColumn1
+            // 
+            dateToDataGridViewTextBoxColumn1.DataPropertyName = "dateTo";
+            dateToDataGridViewTextBoxColumn1.HeaderText = "Date To";
+            dateToDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dateToDataGridViewTextBoxColumn1.Name = "dateToDataGridViewTextBoxColumn1";
+            dateToDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // timeToDataGridViewTextBoxColumn1
+            // 
+            timeToDataGridViewTextBoxColumn1.DataPropertyName = "timeTo";
+            timeToDataGridViewTextBoxColumn1.HeaderText = "Time To";
+            timeToDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            timeToDataGridViewTextBoxColumn1.Name = "timeToDataGridViewTextBoxColumn1";
+            timeToDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // themeColorDataGridViewTextBoxColumn1
+            // 
+            themeColorDataGridViewTextBoxColumn1.DataPropertyName = "themeColor";
+            themeColorDataGridViewTextBoxColumn1.HeaderText = "Theme Color";
+            themeColorDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            themeColorDataGridViewTextBoxColumn1.Name = "themeColorDataGridViewTextBoxColumn1";
+            themeColorDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // etikettDataGridViewTextBoxColumn1
+            // 
+            etikettDataGridViewTextBoxColumn1.DataPropertyName = "etikett";
+            etikettDataGridViewTextBoxColumn1.HeaderText = "Etikett";
+            etikettDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            etikettDataGridViewTextBoxColumn1.Name = "etikettDataGridViewTextBoxColumn1";
+            etikettDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // offDataGridViewTextBoxColumn1
+            // 
+            offDataGridViewTextBoxColumn1.DataPropertyName = "off";
+            offDataGridViewTextBoxColumn1.HeaderText = "Rast (Off)";
+            offDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            offDataGridViewTextBoxColumn1.Name = "offDataGridViewTextBoxColumn1";
+            offDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // noteDataGridViewTextBoxColumn1
+            // 
+            noteDataGridViewTextBoxColumn1.DataPropertyName = "note";
+            noteDataGridViewTextBoxColumn1.HeaderText = "Notes (Anteckningar)";
+            noteDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            noteDataGridViewTextBoxColumn1.Name = "noteDataGridViewTextBoxColumn1";
+            noteDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // sharedDataGridViewTextBoxColumn1
+            // 
+            sharedDataGridViewTextBoxColumn1.DataPropertyName = "shared";
+            sharedDataGridViewTextBoxColumn1.HeaderText = "Shared";
+            sharedDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            sharedDataGridViewTextBoxColumn1.Name = "sharedDataGridViewTextBoxColumn1";
+            sharedDataGridViewTextBoxColumn1.Width = 125;
+            // 
             // label6OkSchema
             // 
             label6OkSchema.AutoSize = true;
@@ -749,230 +974,6 @@
             // schedItemBindingSource4
             // 
             schedItemBindingSource4.DataSource = typeof(SchedItem);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "activity";
-            dataGridViewTextBoxColumn1.HeaderText = "activity";
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // signature
-            // 
-            signature.DataPropertyName = "signature";
-            signature.HeaderText = "signature";
-            signature.MinimumWidth = 6;
-            signature.Name = "signature";
-            signature.Width = 125;
-            // 
-            // firstNameDataGridViewTextBoxColumn3
-            // 
-            firstNameDataGridViewTextBoxColumn3.DataPropertyName = "firstName";
-            firstNameDataGridViewTextBoxColumn3.HeaderText = "firstName";
-            firstNameDataGridViewTextBoxColumn3.MinimumWidth = 6;
-            firstNameDataGridViewTextBoxColumn3.Name = "firstNameDataGridViewTextBoxColumn3";
-            firstNameDataGridViewTextBoxColumn3.Width = 125;
-            // 
-            // lastNameDataGridViewTextBoxColumn3
-            // 
-            lastNameDataGridViewTextBoxColumn3.DataPropertyName = "lastName";
-            lastNameDataGridViewTextBoxColumn3.HeaderText = "lastName";
-            lastNameDataGridViewTextBoxColumn3.MinimumWidth = 6;
-            lastNameDataGridViewTextBoxColumn3.Name = "lastNameDataGridViewTextBoxColumn3";
-            lastNameDataGridViewTextBoxColumn3.Width = 125;
-            // 
-            // emailIdDataGridViewTextBoxColumn1
-            // 
-            emailIdDataGridViewTextBoxColumn1.DataPropertyName = "emailId";
-            emailIdDataGridViewTextBoxColumn1.HeaderText = "Ale ID";
-            emailIdDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            emailIdDataGridViewTextBoxColumn1.Name = "emailIdDataGridViewTextBoxColumn1";
-            emailIdDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dateFromDataGridViewTextBoxColumn1
-            // 
-            dateFromDataGridViewTextBoxColumn1.DataPropertyName = "dateFrom";
-            dateFromDataGridViewTextBoxColumn1.HeaderText = "Date From";
-            dateFromDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dateFromDataGridViewTextBoxColumn1.Name = "dateFromDataGridViewTextBoxColumn1";
-            dateFromDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // timeFromDataGridViewTextBoxColumn1
-            // 
-            timeFromDataGridViewTextBoxColumn1.DataPropertyName = "timeFrom";
-            timeFromDataGridViewTextBoxColumn1.HeaderText = "Time From";
-            timeFromDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            timeFromDataGridViewTextBoxColumn1.Name = "timeFromDataGridViewTextBoxColumn1";
-            timeFromDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dateToDataGridViewTextBoxColumn1
-            // 
-            dateToDataGridViewTextBoxColumn1.DataPropertyName = "dateTo";
-            dateToDataGridViewTextBoxColumn1.HeaderText = "Date To";
-            dateToDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dateToDataGridViewTextBoxColumn1.Name = "dateToDataGridViewTextBoxColumn1";
-            dateToDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // timeToDataGridViewTextBoxColumn1
-            // 
-            timeToDataGridViewTextBoxColumn1.DataPropertyName = "timeTo";
-            timeToDataGridViewTextBoxColumn1.HeaderText = "Time To";
-            timeToDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            timeToDataGridViewTextBoxColumn1.Name = "timeToDataGridViewTextBoxColumn1";
-            timeToDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // themeColorDataGridViewTextBoxColumn1
-            // 
-            themeColorDataGridViewTextBoxColumn1.DataPropertyName = "themeColor";
-            themeColorDataGridViewTextBoxColumn1.HeaderText = "Theme Color";
-            themeColorDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            themeColorDataGridViewTextBoxColumn1.Name = "themeColorDataGridViewTextBoxColumn1";
-            themeColorDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // etikettDataGridViewTextBoxColumn1
-            // 
-            etikettDataGridViewTextBoxColumn1.DataPropertyName = "etikett";
-            etikettDataGridViewTextBoxColumn1.HeaderText = "Etikett";
-            etikettDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            etikettDataGridViewTextBoxColumn1.Name = "etikettDataGridViewTextBoxColumn1";
-            etikettDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // offDataGridViewTextBoxColumn1
-            // 
-            offDataGridViewTextBoxColumn1.DataPropertyName = "off";
-            offDataGridViewTextBoxColumn1.HeaderText = "Rast (Off)";
-            offDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            offDataGridViewTextBoxColumn1.Name = "offDataGridViewTextBoxColumn1";
-            offDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // noteDataGridViewTextBoxColumn1
-            // 
-            noteDataGridViewTextBoxColumn1.DataPropertyName = "note";
-            noteDataGridViewTextBoxColumn1.HeaderText = "Notes (Anteckningar)";
-            noteDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            noteDataGridViewTextBoxColumn1.Name = "noteDataGridViewTextBoxColumn1";
-            noteDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // sharedDataGridViewTextBoxColumn1
-            // 
-            sharedDataGridViewTextBoxColumn1.DataPropertyName = "shared";
-            sharedDataGridViewTextBoxColumn1.HeaderText = "Shared";
-            sharedDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            sharedDataGridViewTextBoxColumn1.Name = "sharedDataGridViewTextBoxColumn1";
-            sharedDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // activityDataGridViewTextBoxColumn
-            // 
-            activityDataGridViewTextBoxColumn.DataPropertyName = "activity";
-            activityDataGridViewTextBoxColumn.HeaderText = "Activity";
-            activityDataGridViewTextBoxColumn.MinimumWidth = 6;
-            activityDataGridViewTextBoxColumn.Name = "activityDataGridViewTextBoxColumn";
-            activityDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // signatureDataGridViewTextBoxColumn
-            // 
-            signatureDataGridViewTextBoxColumn.DataPropertyName = "signature";
-            signatureDataGridViewTextBoxColumn.HeaderText = "signature";
-            signatureDataGridViewTextBoxColumn.MinimumWidth = 6;
-            signatureDataGridViewTextBoxColumn.Name = "signatureDataGridViewTextBoxColumn";
-            signatureDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // firstNameDataGridViewTextBoxColumn4
-            // 
-            firstNameDataGridViewTextBoxColumn4.DataPropertyName = "firstName";
-            firstNameDataGridViewTextBoxColumn4.HeaderText = "firstName";
-            firstNameDataGridViewTextBoxColumn4.MinimumWidth = 6;
-            firstNameDataGridViewTextBoxColumn4.Name = "firstNameDataGridViewTextBoxColumn4";
-            firstNameDataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // lastNameDataGridViewTextBoxColumn4
-            // 
-            lastNameDataGridViewTextBoxColumn4.DataPropertyName = "lastName";
-            lastNameDataGridViewTextBoxColumn4.HeaderText = "lastName";
-            lastNameDataGridViewTextBoxColumn4.MinimumWidth = 6;
-            lastNameDataGridViewTextBoxColumn4.Name = "lastNameDataGridViewTextBoxColumn4";
-            lastNameDataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // emailIdDataGridViewTextBoxColumn2
-            // 
-            emailIdDataGridViewTextBoxColumn2.DataPropertyName = "emailId";
-            emailIdDataGridViewTextBoxColumn2.HeaderText = "Email ID";
-            emailIdDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            emailIdDataGridViewTextBoxColumn2.Name = "emailIdDataGridViewTextBoxColumn2";
-            emailIdDataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dateFromDataGridViewTextBoxColumn2
-            // 
-            dateFromDataGridViewTextBoxColumn2.DataPropertyName = "dateFrom";
-            dateFromDataGridViewTextBoxColumn2.HeaderText = "Date From";
-            dateFromDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            dateFromDataGridViewTextBoxColumn2.Name = "dateFromDataGridViewTextBoxColumn2";
-            dateFromDataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // timeFromDataGridViewTextBoxColumn2
-            // 
-            timeFromDataGridViewTextBoxColumn2.DataPropertyName = "timeFrom";
-            timeFromDataGridViewTextBoxColumn2.HeaderText = "Time From";
-            timeFromDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            timeFromDataGridViewTextBoxColumn2.Name = "timeFromDataGridViewTextBoxColumn2";
-            timeFromDataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dateToDataGridViewTextBoxColumn2
-            // 
-            dateToDataGridViewTextBoxColumn2.DataPropertyName = "dateTo";
-            dateToDataGridViewTextBoxColumn2.HeaderText = "Date To";
-            dateToDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            dateToDataGridViewTextBoxColumn2.Name = "dateToDataGridViewTextBoxColumn2";
-            dateToDataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // timeToDataGridViewTextBoxColumn2
-            // 
-            timeToDataGridViewTextBoxColumn2.DataPropertyName = "timeTo";
-            timeToDataGridViewTextBoxColumn2.HeaderText = "Time To";
-            timeToDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            timeToDataGridViewTextBoxColumn2.Name = "timeToDataGridViewTextBoxColumn2";
-            timeToDataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // themeColorDataGridViewTextBoxColumn2
-            // 
-            themeColorDataGridViewTextBoxColumn2.DataPropertyName = "themeColor";
-            themeColorDataGridViewTextBoxColumn2.HeaderText = "Theme Color";
-            themeColorDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            themeColorDataGridViewTextBoxColumn2.Name = "themeColorDataGridViewTextBoxColumn2";
-            themeColorDataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // etikettDataGridViewTextBoxColumn2
-            // 
-            etikettDataGridViewTextBoxColumn2.DataPropertyName = "etikett";
-            etikettDataGridViewTextBoxColumn2.HeaderText = "Etikett";
-            etikettDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            etikettDataGridViewTextBoxColumn2.Name = "etikettDataGridViewTextBoxColumn2";
-            etikettDataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // offDataGridViewTextBoxColumn2
-            // 
-            offDataGridViewTextBoxColumn2.DataPropertyName = "off";
-            offDataGridViewTextBoxColumn2.HeaderText = "Rast (Off)";
-            offDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            offDataGridViewTextBoxColumn2.Name = "offDataGridViewTextBoxColumn2";
-            offDataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // noteDataGridViewTextBoxColumn4
-            // 
-            noteDataGridViewTextBoxColumn4.DataPropertyName = "note";
-            noteDataGridViewTextBoxColumn4.HeaderText = "Notes (Anteckningar)";
-            noteDataGridViewTextBoxColumn4.MinimumWidth = 6;
-            noteDataGridViewTextBoxColumn4.Name = "noteDataGridViewTextBoxColumn4";
-            noteDataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // sharedDataGridViewTextBoxColumn2
-            // 
-            sharedDataGridViewTextBoxColumn2.DataPropertyName = "shared";
-            sharedDataGridViewTextBoxColumn2.HeaderText = "Shared";
-            sharedDataGridViewTextBoxColumn2.MinimumWidth = 6;
-            sharedDataGridViewTextBoxColumn2.Name = "sharedDataGridViewTextBoxColumn2";
-            sharedDataGridViewTextBoxColumn2.Width = 125;
             // 
             // Form1
             // 
