@@ -83,6 +83,17 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             return listOfEnheter;
         }
 
+        public static Dictionary<string,HashSet<string>> returnEnhetWithAnyOfTheseSignatures()
+        {
+            Dictionary<string, HashSet<string>> enhetWithAnyOfTheseSignatures = new Dictionary<string, HashSet<string>>();
+            enhetWithAnyOfTheseSignatures.Add("Björklövsvägen", new HashSet<string> { "B" });
+            enhetWithAnyOfTheseSignatures.Add("Björklövsvägen NATT", new HashSet<string> { "BN" });
+            enhetWithAnyOfTheseSignatures.Add("Klöverstigen", new HashSet<string> { "KLÖ" });
+            enhetWithAnyOfTheseSignatures.Add("Klöverstigen NATT", new HashSet<string> { "Natt klöver", "NKLÖ" });
+            enhetWithAnyOfTheseSignatures.Add("Surtehöjd", new HashSet<string> { "surte", "Surte" });
+            return enhetWithAnyOfTheseSignatures;
+        }
+
         public static Dictionary<string, HashSet<string>> returnVariousFormsOfActivityEnheter()
         {
             Dictionary<string, HashSet<string>> variousFormsOfActivityEnheter = new Dictionary<string, HashSet<string>>();
@@ -245,7 +256,12 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             string signature = possibleSchedItemString.Split(';')[2].Replace("\"", "").Trim();
             string from = possibleSchedItemString.Split(';')[3].Replace("\"", "").Trim();
             string to = possibleSchedItemString.Split(';')[4].Replace("\"", "").Trim();
+            
+            //can turn off getting activity since it is "Jour bilaga J" but we want a "Surtehöjd" and add it in Surtehöjd group, i.e. not as a Jour Bilaga enhet
             string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
+            //string activity = "Surtehöjd";
+            //signature = "Jour Bilaga J";
+
             string off = possibleSchedItemString.Split(';')[6].Replace("\"", "").Trim();
             string shiftHours = possibleSchedItemString.Split(';')[7].Replace("\"", "").Trim();
             //below for the cases like encountering this line: " 13:00";" 16:00";" APT";" 0";" 03:00";" ";" ";""
@@ -314,6 +330,28 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         }
 
+        public static string getTheActivityEnhetNameThatWeHaveInTeamsForThisSignature(string signature)
+        {
+            string? containKey = returnEnhetWithAnyOfTheseSignatures().Keys
+                                             .Where(key => returnEnhetWithAnyOfTheseSignatures()[key].Contains(signature))
+                                             .FirstOrDefault();
+            if (containKey==null) { return "NA Enhet"; }
+            return containKey;
+        }
+
+        public static bool isThereAStarAlongSideASignatureThatMakesThisSchedLineOk(string possibleSchedItemString)
+        {
+            string signature = possibleSchedItemString.Split(';')[2].Replace("\"", "").Trim();
+            string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
+            if (activity=="*" && returnListOfActivityEnheter().Contains(
+                getTheActivityEnhetNameThatWeHaveInTeamsForThisSignature(signature))) {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
         public static string getTheActivityEnhetNameThatWeHaveInTeamsForThisVariation(string activity)
         {
             string? containKey = returnVariousFormsOfActivityEnheter().Keys
@@ -369,14 +407,20 @@ namespace ÖvergripandeBemanningBro_v3._0._2
             return false;
         }
 
-        public static SchedItem createSchedItemFromString(string possibleSchedItemString, string possibleAleId, string dateDetail)
+        public static SchedItem createSchedItemFromString(string possibleSchedItemString, string possibleAleId, string dateDetail,string shouldUpgradeActivityFromStarToEnhetWithGivenSignature="no")
         {
             string firstName = possibleSchedItemString.Split(';')[0].Replace("\"", "").Trim();
             string lastName = possibleSchedItemString.Split(';')[1].Replace("\"", "").Trim();
             string signature = possibleSchedItemString.Split(';')[2].Replace("\"", "").Trim();
             string from = possibleSchedItemString.Split(';')[3].Replace("\"", "").Trim() ;
             string to = possibleSchedItemString.Split(';')[4].Replace("\"", "").Trim();
+            
             string activity = possibleSchedItemString.Split(';')[5].Replace("\"", "").Trim();
+            if (shouldUpgradeActivityFromStarToEnhetWithGivenSignature == "yes" && activity=="*")
+            {
+                activity = getTheActivityEnhetNameThatWeHaveInTeamsForThisSignature(signature);
+                signature = "* " + signature; //add a * so that we keep the original activty value somewhere ie. *
+            }
 
             bool activityVariationFound = false;
             if (isThisActivityAVariationOfAKnownActivityEnhet(activity))

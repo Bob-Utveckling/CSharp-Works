@@ -129,7 +129,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                         {
                                             //the previous line should have a valid personal AleId:
                                             possibleAleId = SchedItem.getTheJourBilagaAleId(considerPreviousLine);
-                                            if (possibleAleId  != "NA")
+                                            if (possibleAleId != "NA")
                                             {
                                                 //as note: notes.Add(new Note(thisDateDetail, SchedItem.createNoteOfANighJourBilagaDetail(possibleSchedLine, considerPreviousLine)));
                                                 okSchedItems.Add(SchedItem.createSchedItemOfANighJourBilagaDetail(possibleSchedLine, possibleAleId, thisDateDetail, considerPreviousLine));
@@ -162,16 +162,19 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                                                 }
 
                                             }
-                                        } else if (SchedItem.canWeStillMakeSenseOfThePossibleSchedLineActivityAndSignatureInOrderToAddItAsUnclearNote(possibleSchedLine))
+                                        } else if (SchedItem.isThereAStarAlongSideASignatureThatMakesThisSchedLineOk(possibleSchedLine)) {                                            
+                                            okSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail, "yes"));
+                                        }
+                                        else if (SchedItem.canWeStillMakeSenseOfThePossibleSchedLineActivityAndSignatureInOrderToAddItAsUnclearNote(possibleSchedLine))
                                         {
                                             unclearNotes.Add(new Note(thisDateDetail, SchedItem.createNote(possibleSchedLine)));
                                         }
                                         else
                                         {
-                                                //MessageBox.Show("adding as NOT ok. AleId NA");
+                                            //MessageBox.Show("adding as NOT ok. AleId NA");
 
-                                                notOkSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
-                                                notOkSchedItems = notOkSchedItems.OrderBy(o => o.activity).ToList();
+                                            notOkSchedItems.Add(SchedItem.createSchedItemFromString(possibleSchedLine, possibleAleId, thisDateDetail));
+                                            notOkSchedItems = notOkSchedItems.OrderBy(o => o.activity).ToList();
                                         }
 
                                     }
