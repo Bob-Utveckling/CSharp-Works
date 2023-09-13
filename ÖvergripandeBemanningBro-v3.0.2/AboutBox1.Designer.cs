@@ -140,6 +140,7 @@
             textBoxDescription.TabIndex = 23;
             textBoxDescription.TabStop = false;
             textBoxDescription.Text = "This application bridges \"Time Care Multi Acess\" and \"Microsoft Shifts\" for the purpose of personnel schedule accessibility and planning.";
+            textBoxDescription.TextChanged += textBoxDescription_TextChanged;
             // 
             // okButton
             // 

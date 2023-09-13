@@ -9,17 +9,12 @@ using System.Windows.Forms;
 
 namespace ÖvergripandeBemanningBro_v3._0._2
 {
-    partial class AboutBox1 : Form
+    partial class AboutBox2 : Form
     {
-        public AboutBox1()
+        public AboutBox2()
         {
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
         }
 
         #region Assembly Attribute Accessors
@@ -102,7 +97,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
         }
         #endregion
 
-        private void textBoxDescription_TextChanged(object sender, EventArgs e)
+        private void labelProductName_Click(object sender, EventArgs e)
         {
 
         }

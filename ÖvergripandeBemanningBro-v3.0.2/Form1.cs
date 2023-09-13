@@ -214,7 +214,7 @@ namespace ÖvergripandeBemanningBro_v3._0._2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AboutBox1 a = new AboutBox1();
+            AboutBox2 a = new AboutBox2();
             a.Show();
         }
 

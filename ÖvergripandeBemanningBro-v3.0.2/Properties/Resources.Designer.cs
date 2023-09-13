@@ -59,5 +59,15 @@ namespace ÖvergripandeBemanningBro_v3._0._2.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AleLogo {
+            get {
+                object obj = ResourceManager.GetObject("AleLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
