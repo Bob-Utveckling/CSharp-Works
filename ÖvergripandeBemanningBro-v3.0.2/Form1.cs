@@ -155,13 +155,14 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                     "\nAntal ok schema = " + okSchedItems.Count +
                     "\nAntal ej ok schema = " + notOkSchedItems.Count +
                     "\nAntal anteckningar = " + notes.Count;
-                    if (checkBox1.Checked) { smallDetails += "\nAntal extra anteckningar = " + unclearNotes.Count; } else
-                    {
+                if (checkBox1.Checked) { smallDetails += "\nAntal extra anteckningar = " + unclearNotes.Count; }
+                else
+                {
                     smallDetails += "\nAntal ej tillsatt extra anteckningar = " + unclearNotes.Count;
-                    }
-                    smallDetails += "\nAntal okej personal = " + okPersonnelInFile.Count +
-                    "\nAntal ej okej personal = " + notOkPersonnelInFile.Count +
-                    "\n\n";
+                }
+                smallDetails += "\nAntal okej personal = " + okPersonnelInFile.Count +
+                "\nAntal ej okej personal = " + notOkPersonnelInFile.Count +
+                "\n\n";
 
                 if (result.Item1 == "ok")
                 {

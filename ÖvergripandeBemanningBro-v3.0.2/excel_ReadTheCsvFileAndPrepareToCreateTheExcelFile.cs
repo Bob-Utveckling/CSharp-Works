@@ -67,6 +67,14 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                         var indexOfQuote = thisDateDetail.IndexOf("\"");
                         int numChars = indexOfQuote - indexOfAfterComma;
                         thisDateDetail = thisDateDetail.Substring(indexOfAfterComma, numChars).Trim();
+                        if (thisDateDetail.IndexOf(",")>0)
+                        {
+                            //if comma found we should still process the date detail
+                            MessageBox.Show("date was: " + thisDateDetail);
+                            var thisDateDetailCommaFoundIndex = thisDateDetail.IndexOf(",");
+                            thisDateDetail = thisDateDetail.Substring(0, thisDateDetailCommaFoundIndex).Trim();
+                            MessageBox.Show("date now is: " + thisDateDetail);
+                        }
                         //ok MessageBox.Show("I have date: " + thisDateDetail);
                         datesInTheFile.Add(DateTime.Parse(thisDateDetail));
                         //start the scanning for the schedule:
