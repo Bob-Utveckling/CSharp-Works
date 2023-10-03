@@ -70,10 +70,10 @@ namespace ÖvergripandeBemanningBro_v3._0._2
                         if (thisDateDetail.IndexOf(",")>0)
                         {
                             //if comma found we should still process the date detail
-                            MessageBox.Show("date was: " + thisDateDetail);
+                            //MessageBox.Show("date was: " + thisDateDetail);//2023-11-04, Allhelgonadagen
                             var thisDateDetailCommaFoundIndex = thisDateDetail.IndexOf(",");
                             thisDateDetail = thisDateDetail.Substring(0, thisDateDetailCommaFoundIndex).Trim();
-                            MessageBox.Show("date now is: " + thisDateDetail);
+                            //MessageBox.Show("date now is: " + thisDateDetail); //2023-11-04
                         }
                         //ok MessageBox.Show("I have date: " + thisDateDetail);
                         datesInTheFile.Add(DateTime.Parse(thisDateDetail));
